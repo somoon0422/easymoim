@@ -2,7 +2,7 @@
 
 > AI 기반 스마트 약속 조율 서비스 - 모임의 A부터 Z까지, 당신의 모임비서
 
-![이지모임](prototypeeasymoim.vercel.app)
+이지 모임 : [prototypeeasymoim.vercel.app](https://prototypeeasymoim.vercel.app/)
 
 ## 서비스 소개
 
