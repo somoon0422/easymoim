@@ -1,0 +1,24 @@
+{
+  "name": "easymoim",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/somoon0422/easymoim.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/somoon0422/easymoim/issues"
+  },
+  "homepage": "https://github.com/somoon0422/easymoim#readme",
+  "dependencies": {
+    "pdfkit": "^0.17.2",
+    "pptxgenjs": "^4.0.1"
+  }
+}
