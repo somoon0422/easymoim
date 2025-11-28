@@ -79,6 +79,37 @@
 |------|-----|
 | **서비스** | [prototypeeasymoim.vercel.app](https://prototypeeasymoim.vercel.app/) |
 | **랜딩페이지** | [somoon0422.github.io/easymoim](https://somoon0422.github.io/easymoim/) |
+| **IR 자료 (웹)** | [somoon0422.github.io/easymoim/ir.html](https://somoon0422.github.io/easymoim/ir.html) |
+| **IR 자료 (PPT)** | [EasyMoim_IR_Deck.pptx](./EasyMoim_IR_Deck.pptx) |
+
+---
+
+## IR 자료
+
+정부지원사업용 IR 발표자료가 포함되어 있습니다.
+
+### 웹 IR 프레젠테이션
+- `ir.html` - 웹 브라우저에서 바로 볼 수 있는 인터랙티브 IR 슬라이드
+- 키보드 좌우 화살표, 버튼, 터치 스와이프로 이동
+- PDF 다운로드 기능 내장
+
+### PPT IR 파일
+- `EasyMoim_IR_Deck.pptx` - 파워포인트 형식 IR 자료
+
+### IR 슬라이드 구성
+
+| 번호 | 내용 |
+|:----:|------|
+| 1 | 표지 |
+| 2 | Problem - 문제 정의 |
+| 3 | Solution - 솔루션 |
+| 4 | Core Feature 1 - 일정 투표 |
+| 5 | Core Feature 2 - AI 추천 시스템 |
+| 6 | Market Size - 시장 규모 |
+| 7 | Competition - 경쟁사 분석 |
+| 8 | Business Model - 비즈니스 모델 |
+| 9 | Team - 팀 소개 |
+| 10 | Closing - 마무리 |
 
 ---
 
