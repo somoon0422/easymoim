@@ -78,7 +78,7 @@
 | 구분 | URL |
 |------|-----|
 | **서비스** | [prototypeeasymoim.vercel.app](https://prototypeeasymoim.vercel.app/) |
-| **사업계획서** | [somoon0422.github.io/easymoim](https://somoon0422.github.io/easymoim/) |
+| **랜딩페이지** | [somoon0422.github.io/easymoim](https://somoon0422.github.io/easymoim/) |
 
 ---
 
