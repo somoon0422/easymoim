@@ -694,6 +694,9 @@
 
         .feature-card h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
         .feature-card p { color: var(--gray); font-size: 0.95rem; }
+        .feature-card.coming-soon { position: relative; border: 2px dashed #E5E7EB; }
+        .feature-card.coming-soon::after { content: "Coming Soon"; position: absolute; top: 12px; right: 12px; background: linear-gradient(135deg, #6366F1, #8B5CF6); color: white; font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 12px; }
+        .feature-card.coming-soon .feature-icon { opacity: 0.7; }
 
         /* How It Works */
         .how-it-works { padding: 6rem 2rem; background: linear-gradient(135deg, #1F2937 0%, #111827 100%); color: white; }
@@ -1127,6 +1130,16 @@
                     <div class="feature-icon" style="background: linear-gradient(135deg, #14B8A6, #0D9488);"><i class="fas fa-bell"></i></div>
                     <h3>알림 기능</h3>
                     <p>미응답자에게 리마인더, 일정 확정 알림까지 자동으로 보내드려요.</p>
+                </div>
+                <div class="feature-card coming-soon">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #6366F1, #4F46E5);"><i class="fas fa-sync-alt"></i></div>
+                    <h3>정기모임 관리</h3>
+                    <p>매주, 매월 정기적인 모임도 한 번 설정으로 자동 관리! 반복 일정 걱정 끝.</p>
+                </div>
+                <div class="feature-card coming-soon">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #F97316, #EA580C);"><i class="fas fa-receipt"></i></div>
+                    <h3>자동 정산</h3>
+                    <p>모임 후 누가 얼마 냈는지 자동 계산! 1/N 정산부터 차등 정산까지.</p>
                 </div>
             </div>
         </div>
