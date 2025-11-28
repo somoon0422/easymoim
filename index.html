@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이지모임 - AI 모임비서 이비서 | 더 이지한 모임!</title>
-    <meta name="description" content="모임비서 이비서가 일정 조율, 중간지점, 맛집 추천까지! 2시간 걸리던 약속 잡기, 3분이면 끝. 더 이지한 모임!">
-    <meta name="keywords" content="이지모임, 이비서, 약속 잡기, 일정 조율, AI, 모임, 중간지점, 맛집 추천">
+    <title>이지모임 - AI 기반 스마트 약속 조율 서비스</title>
+    <meta name="description" content="단톡방 일정 조율, AI가 3분 만에 해결합니다. 100개 넘는 메시지 정리 대신, 클릭 몇 번으로 약속 잡기 완료!">
+    <meta name="keywords" content="이지모임, 약속 잡기, 일정 조율, AI, 모임, 스케줄링, 중간지점">
 
-    <meta property="og:title" content="이지모임 - AI 모임비서 이비서">
-    <meta property="og:description" content="더 이지한 모임! 모임비서 이비서가 다 해결해드려요.">
+    <!-- Open Graph -->
+    <meta property="og:title" content="이지모임 - AI 기반 스마트 약속 조율 서비스">
+    <meta property="og:description" content="단톡방 일정 조율, AI가 3분 만에 해결합니다.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://somoon0422.github.io/easymoim/">
 
@@ -21,14 +22,14 @@
         :root {
             --primary: #0891B2;
             --primary-dark: #0E7490;
-            --secondary: #6366F1;
+            --secondary: #2563EB;
             --accent: #06B6D4;
             --success: #10B981;
             --warning: #F59E0B;
             --danger: #EF4444;
-            --dark: #0F172A;
-            --gray: #64748B;
-            --light: #F8FAFC;
+            --dark: #1F2937;
+            --gray: #6B7280;
+            --light-gray: #F3F4F6;
             --white: #FFFFFF;
         }
 
@@ -39,7 +40,6 @@
             color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
-            background: var(--white);
         }
 
         /* Navigation */
@@ -49,11 +49,16 @@
             left: 0;
             right: 0;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 16px 40px;
+            padding: 1rem 2rem;
             box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.75rem 2rem;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
         }
 
         .nav-container {
@@ -65,37 +70,30 @@
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            font-size: 1.4em;
+            font-size: 1.5rem;
             font-weight: 800;
-            color: var(--dark);
-        }
-
-        .logo img {
-            height: 36px;
-            width: auto;
-        }
-
-        .logo-text {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
+
+        .logo-icon { font-size: 1.8rem; }
+        .logo-img { height: 32px; width: auto; }
 
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 2rem;
             align-items: center;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--gray);
+            color: var(--dark);
             font-weight: 500;
-            font-size: 0.95em;
             transition: color 0.3s;
         }
 
@@ -104,1198 +102,983 @@
         .nav-cta {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white !important;
-            padding: 12px 24px;
-            border-radius: 30px;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
             font-weight: 600;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(8, 145, 178, 0.3);
         }
 
         .nav-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(8, 145, 178, 0.4);
+            box-shadow: 0 4px 15px rgba(8, 145, 178, 0.4);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
         }
 
         /* Hero Section */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
-            padding: 140px 40px 80px;
             display: flex;
             align-items: center;
+            background: linear-gradient(135deg, #E0F7FA 0%, #E3F2FD 50%, #F3E5F5 100%);
+            padding: 8rem 2rem 4rem;
             position: relative;
             overflow: hidden;
         }
 
         .hero::before {
-            content: "";
+            content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                radial-gradient(circle at 20% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(8, 145, 178, 0.05) 0%, transparent 70%);
-            animation: heroGlow 10s ease-in-out infinite;
-        }
-
-        @keyframes heroGlow {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(ellipse, rgba(8, 145, 178, 0.1) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .hero-container {
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            position: relative;
-            z-index: 1;
+            width: 100%;
         }
 
-        .hero-content { color: white; }
+        .hero-top {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero-content { z-index: 1; }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(6, 182, 212, 0.2);
-            border: 1px solid rgba(6, 182, 212, 0.3);
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-size: 0.85em;
-            color: var(--accent);
-            margin-bottom: 24px;
-            animation: pulse 2s infinite;
+            gap: 0.5rem;
+            background: rgba(8, 145, 178, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.6s ease-out;
         }
 
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4); }
-            50% { box-shadow: 0 0 0 10px rgba(6, 182, 212, 0); }
-        }
-
-        .hero-title {
-            font-size: 3.5em;
+        .hero h1 {
+            font-size: 3.2rem;
             font-weight: 900;
-            line-height: 1.15;
-            margin-bottom: 16px;
-            letter-spacing: -2px;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.6s ease-out 0.1s backwards;
         }
 
-        .hero-title .highlight {
-            background: linear-gradient(135deg, var(--accent), #22D3EE);
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .hero-slogan {
-            font-size: 1.6em;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 20px;
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.6s ease-out 0.2s backwards;
         }
 
-        .hero-desc {
-            font-size: 1.15em;
-            color: #94A3B8;
-            line-height: 1.8;
-            margin-bottom: 32px;
-        }
+        .hero-subtitle strong { color: var(--dark); }
 
-        .hero-pain {
-            background: rgba(239, 68, 68, 0.15);
-            border-left: 4px solid var(--danger);
-            padding: 20px 24px;
-            border-radius: 0 16px 16px 0;
-            margin-bottom: 32px;
-        }
-
-        .hero-pain p {
-            color: #FCA5A5;
-            font-size: 1em;
-            line-height: 1.7;
-        }
-
-        .hero-pain strong {
-            color: #FEE2E2;
-        }
-
-        .hero-ctas {
+        .hero-buttons {
             display: flex;
-            gap: 16px;
+            gap: 1rem;
             flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease-out 0.3s backwards;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 16px 32px;
-            border-radius: 30px;
-            font-size: 1em;
-            font-weight: 700;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
             text-decoration: none;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             cursor: pointer;
             border: none;
+            font-size: 1rem;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            box-shadow: 0 8px 30px rgba(8, 145, 178, 0.4);
+            box-shadow: 0 4px 20px rgba(8, 145, 178, 0.3);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(8, 145, 178, 0.5);
+            box-shadow: 0 8px 30px rgba(8, 145, 178, 0.4);
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: white;
+            color: var(--dark);
+            border: 2px solid var(--light-gray);
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.3);
+            border-color: var(--primary);
+            color: var(--primary);
         }
 
         /* Hero Visual */
         .hero-visual {
             position: relative;
+            animation: fadeIn 1s ease-out 0.4s backwards;
         }
 
-        .hero-phone {
-            background: linear-gradient(135deg, #1E293B, #334155);
-            border-radius: 40px;
-            padding: 12px;
-            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
-            max-width: 340px;
+        .hero-mockup {
+            width: 100%;
+            max-width: 380px;
             margin: 0 auto;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .phone-screen {
             background: white;
-            border-radius: 32px;
-            padding: 24px;
-            min-height: 500px;
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            overflow: hidden;
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: transform 0.3s ease;
         }
 
-        .phone-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid #E2E8F0;
-        }
+        .hero-mockup:hover { transform: perspective(1000px) rotateY(0deg); }
 
-        .phone-avatar {
-            width: 50px;
-            height: 50px;
+        .mockup-header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 50%;
+            padding: 1.25rem;
+            color: white;
+        }
+
+        .mockup-header h3 { font-size: 1rem; margin-bottom: 0.2rem; }
+        .mockup-header p { font-size: 0.8rem; opacity: 0.9; margin: 0; }
+        .mockup-content { padding: 1.25rem; }
+
+        .mockup-item {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 1.5em;
-        }
-
-        .phone-info h4 {
-            font-size: 1.1em;
-            font-weight: 700;
-            color: var(--dark);
-        }
-
-        .phone-info p {
-            font-size: 0.8em;
-            color: var(--gray);
-        }
-
-        .ebi-message {
-            background: linear-gradient(135deg, #ECFEFF, #CFFAFE);
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 16px;
-            position: relative;
-        }
-
-        .ebi-message::before {
-            content: "🤖";
-            position: absolute;
-            top: -10px;
-            left: 16px;
-            background: white;
-            padding: 4px;
-            border-radius: 50%;
-            font-size: 1.2em;
-        }
-
-        .ebi-message p {
-            font-size: 0.95em;
-            color: var(--dark);
-            line-height: 1.6;
-        }
-
-        .ebi-message strong {
-            color: var(--primary);
-        }
-
-        .phone-feature {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 14px;
-            background: #F8FAFC;
-            border-radius: 14px;
-            margin-bottom: 10px;
-            transition: all 0.3s;
-        }
-
-        .phone-feature:hover {
-            background: #ECFEFF;
-            transform: translateX(4px);
-        }
-
-        .phone-feature.done {
-            background: #F0FDF4;
-            border: 1px solid #86EFAC;
-        }
-
-        .phone-feature .icon {
-            width: 40px;
-            height: 40px;
+            gap: 0.75rem;
+            padding: 0.85rem;
+            background: var(--light-gray);
             border-radius: 12px;
+            margin-bottom: 0.6rem;
+        }
+
+        .mockup-item i {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.1em;
-            flex-shrink: 0;
+            font-size: 0.9rem;
         }
 
-        .phone-feature .icon.cyan { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; }
-        .phone-feature .icon.purple { background: linear-gradient(135deg, var(--secondary), #8B5CF6); color: white; }
-        .phone-feature .icon.orange { background: linear-gradient(135deg, var(--warning), #D97706); color: white; }
-        .phone-feature .icon.green { background: linear-gradient(135deg, var(--success), #059669); color: white; }
+        .mockup-item-text h4 { font-size: 0.85rem; margin-bottom: 0.15rem; }
+        .mockup-item-text p { font-size: 0.75rem; color: var(--gray); margin: 0; }
 
-        .phone-feature .text h5 {
-            font-size: 0.9em;
-            font-weight: 700;
-            color: var(--dark);
+        /* Hero Feature Cards */
+        .hero-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            animation: fadeInUp 0.6s ease-out 0.5s backwards;
         }
 
-        .phone-feature .text p {
-            font-size: 0.75em;
-            color: var(--gray);
-        }
-
-        .phone-feature .check {
-            margin-left: auto;
-            color: var(--success);
-            font-size: 1.2em;
-        }
-
-        /* Stats Bar */
-        .stats-bar {
+        .hero-feature-card {
             background: white;
-            padding: 50px 40px;
-            border-bottom: 1px solid #E2E8F0;
-        }
-
-        .stats-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-
-        .stat-item {
+            padding: 2rem 1.5rem;
+            border-radius: 20px;
             text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
 
-        .stat-value {
-            font-size: 3em;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .hero-feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(8, 145, 178, 0.15);
         }
 
-        .stat-label {
-            font-size: 0.95em;
-            color: var(--gray);
-            margin-top: 8px;
+        .hero-feature-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
         }
+
+        .hero-feature-icon.calendar { background: linear-gradient(135deg, #DBEAFE, #BFDBFE); }
+        .hero-feature-icon.location { background: linear-gradient(135deg, #D1FAE5, #A7F3D0); }
+        .hero-feature-icon.restaurant { background: linear-gradient(135deg, #FEF3C7, #FDE68A); }
+
+        .hero-feature-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--dark); }
+        .hero-feature-card p { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+
+        /* Sections Common */
+        .section-container { max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-header h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; }
+        .section-header p { font-size: 1.1rem; color: var(--gray); }
 
         /* Problem Section */
-        .problem-section {
-            padding: 100px 40px;
-            background: linear-gradient(180deg, #FEF2F2 0%, white 100%);
-        }
-
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--danger);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-size: 0.85em;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .section-title {
-            font-size: 2.8em;
-            font-weight: 900;
-            color: var(--dark);
-            margin-bottom: 16px;
-            line-height: 1.3;
-        }
-
-        .section-subtitle {
-            font-size: 1.15em;
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.7;
-        }
+        .problem { padding: 6rem 2rem; background: white; }
 
         .problem-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 2rem;
         }
 
         .problem-card {
-            background: white;
-            border-radius: 24px;
-            padding: 40px 30px;
-            text-align: center;
-            border: 2px solid #FECACA;
-            transition: all 0.3s;
-        }
-
-        .problem-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(239, 68, 68, 0.15);
-        }
-
-        .problem-icon {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-
-        .problem-card h3 {
-            font-size: 1.3em;
-            font-weight: 800;
-            color: var(--danger);
-            margin-bottom: 12px;
-        }
-
-        .problem-card p {
-            font-size: 1em;
-            color: var(--gray);
-            line-height: 1.7;
-        }
-
-        .problem-stat {
-            margin-top: 20px;
-            padding: 16px;
-            background: #FEF2F2;
-            border-radius: 12px;
-        }
-
-        .problem-stat .value {
-            font-size: 2em;
-            font-weight: 900;
-            color: var(--danger);
-        }
-
-        .problem-stat .label {
-            font-size: 0.85em;
-            color: #991B1B;
-        }
-
-        /* Ebi Section */
-        .ebi-section {
-            padding: 100px 40px;
-            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ebi-section::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
-        }
-
-        .ebi-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .ebi-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .ebi-intro {
-            display: inline-flex;
-            align-items: center;
-            gap: 16px;
-            background: rgba(6, 182, 212, 0.2);
-            border: 1px solid rgba(6, 182, 212, 0.3);
-            padding: 12px 28px;
-            border-radius: 50px;
-            margin-bottom: 30px;
-        }
-
-        .ebi-avatar {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5em;
-        }
-
-        .ebi-name {
-            font-size: 1.3em;
-            font-weight: 800;
-            color: var(--accent);
-        }
-
-        .ebi-header h2 {
-            font-size: 3em;
-            font-weight: 900;
-            margin-bottom: 20px;
-        }
-
-        .ebi-header h2 .highlight {
-            color: var(--accent);
-        }
-
-        .ebi-header p {
-            font-size: 1.2em;
-            color: #94A3B8;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .ebi-features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-        }
-
-        .ebi-feature {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 40px;
-            transition: all 0.3s;
-        }
-
-        .ebi-feature:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-5px);
-        }
-
-        .ebi-feature-icon {
-            width: 70px;
-            height: 70px;
+            background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+            padding: 2rem;
             border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2em;
-            margin-bottom: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
         }
 
-        .ebi-feature-icon.cyan { background: linear-gradient(135deg, var(--primary), var(--accent)); }
-        .ebi-feature-icon.purple { background: linear-gradient(135deg, var(--secondary), #8B5CF6); }
-        .ebi-feature-icon.orange { background: linear-gradient(135deg, var(--warning), #D97706); }
-        .ebi-feature-icon.green { background: linear-gradient(135deg, var(--success), #059669); }
-
-        .ebi-feature h3 {
-            font-size: 1.4em;
-            font-weight: 800;
-            margin-bottom: 12px;
-        }
-
-        .ebi-feature p {
-            font-size: 1em;
-            color: #94A3B8;
-            line-height: 1.7;
-            margin-bottom: 16px;
-        }
-
-        .ebi-feature .speech {
-            background: rgba(6, 182, 212, 0.2);
-            border-radius: 16px;
-            padding: 16px 20px;
-            font-size: 0.95em;
-            color: var(--accent);
-            font-style: italic;
-        }
-
-        .ebi-feature .speech::before {
-            content: '"';
-        }
-
-        .ebi-feature .speech::after {
-            content: '"';
-        }
+        .problem-card:hover { transform: translateY(-5px); }
+        .problem-card .emoji { font-size: 3rem; margin-bottom: 1rem; }
+        .problem-card h3 { font-size: 1.25rem; margin-bottom: 0.75rem; color: #92400E; }
+        .problem-card p { color: #B45309; font-size: 0.95rem; }
 
         /* Midpoint Section */
-        .midpoint-section {
-            padding: 100px 40px;
-            background: linear-gradient(180deg, #ECFEFF 0%, white 100%);
-        }
+        .midpoint { padding: 6rem 2rem; background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%); }
 
-        .midpoint-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .midpoint-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 4rem;
             align-items: center;
         }
 
-        .midpoint-content h2 {
-            font-size: 2.5em;
-            font-weight: 900;
-            color: var(--dark);
-            margin-bottom: 20px;
-            line-height: 1.3;
-        }
+        .midpoint-text h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.3; }
+        .midpoint-text h2 .highlight { color: var(--success); }
+        .midpoint-text .desc { font-size: 1.1rem; color: var(--gray); margin-bottom: 2rem; line-height: 1.8; }
 
-        .midpoint-content h2 .highlight {
-            color: var(--primary);
-        }
-
-        .midpoint-content p {
-            font-size: 1.1em;
-            color: var(--gray);
-            line-height: 1.8;
-            margin-bottom: 30px;
-        }
-
-        .midpoint-benefits {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
+        .midpoint-benefits { display: flex; flex-direction: column; gap: 1rem; }
 
         .midpoint-benefit {
             display: flex;
             align-items: center;
-            gap: 14px;
-            padding: 16px 20px;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
             background: white;
-            border-radius: 16px;
-            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         .midpoint-benefit i {
-            color: var(--primary);
-            font-size: 1.2em;
+            width: 40px;
+            height: 40px;
+            background: var(--success);
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
         }
 
-        .midpoint-benefit span {
-            font-size: 1em;
-            color: var(--dark);
-            font-weight: 500;
-        }
+        .midpoint-benefit span { font-weight: 600; color: var(--dark); }
 
-        .midpoint-visual {
-            position: relative;
-        }
-
+        /* Map Demo */
         .map-demo {
-            background: linear-gradient(135deg, #1E293B, #334155);
+            background: white;
             border-radius: 24px;
-            padding: 40px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+        }
+
+        .map-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+        .map-header i { color: var(--success); font-size: 1.5rem; }
+        .map-header h4 { font-size: 1.1rem; font-weight: 700; }
+
+        .map-container {
+            background: linear-gradient(135deg, #E5E7EB 0%, #D1D5DB 100%);
+            border-radius: 16px;
+            height: 280px;
             position: relative;
-            min-height: 400px;
+            overflow: hidden;
         }
 
         .map-marker {
             position: absolute;
-            text-align: center;
-            animation: bounce 2s ease-in-out infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: bounce 2s infinite;
         }
 
-        .map-marker.user1 { top: 15%; left: 20%; animation-delay: 0s; }
-        .map-marker.user2 { top: 25%; right: 15%; animation-delay: 0.3s; }
-        .map-marker.user3 { bottom: 30%; left: 15%; animation-delay: 0.6s; }
-        .map-marker.user4 { bottom: 20%; right: 25%; animation-delay: 0.9s; }
-        .map-marker.center { top: 50%; left: 50%; transform: translate(-50%, -50%); animation: pulse 1.5s infinite; }
+        .map-marker .pin {
+            width: 36px;
+            height: 36px;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .map-marker .pin i { transform: rotate(45deg); color: white; font-size: 0.9rem; }
+
+        .map-marker .label {
+            background: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 0.25rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            white-space: nowrap;
+        }
+
+        .map-marker.user1 { top: 20%; left: 15%; }
+        .map-marker.user1 .pin { background: #3B82F6; }
+        .map-marker.user1 { animation-delay: 0s; }
+
+        .map-marker.user2 { top: 60%; left: 25%; }
+        .map-marker.user2 .pin { background: #8B5CF6; }
+        .map-marker.user2 { animation-delay: 0.2s; }
+
+        .map-marker.user3 { top: 30%; right: 20%; }
+        .map-marker.user3 .pin { background: #EC4899; }
+        .map-marker.user3 { animation-delay: 0.4s; }
+
+        .map-marker.user4 { bottom: 25%; right: 30%; }
+        .map-marker.user4 .pin { background: #F59E0B; }
+        .map-marker.user4 { animation-delay: 0.6s; }
+
+        .map-marker.center {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 2s infinite;
+        }
+
+        .map-marker.center .pin {
+            background: var(--success);
+            width: 50px;
+            height: 50px;
+            border: 4px solid white;
+        }
+
+        .map-marker.center .pin i { font-size: 1.2rem; }
+        .map-marker.center .label { background: var(--success); color: white; font-size: 0.8rem; padding: 0.4rem 0.8rem; }
+
+        .connection-lines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+        .connection-lines svg { width: 100%; height: 100%; }
+        .connection-lines line { stroke: var(--success); stroke-width: 2; stroke-dasharray: 8 4; opacity: 0.5; }
+
+        .map-result {
+            margin-top: 1.5rem;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, #ECFDF5, #D1FAE5);
+            border-radius: 12px;
+            border: 2px solid var(--success);
+        }
+
+        .map-result-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; }
+        .map-result-header i { color: var(--success); }
+        .map-result-header span { font-weight: 700; color: var(--success); font-size: 0.9rem; }
+        .map-result h4 { font-size: 1.2rem; font-weight: 800; color: var(--dark); margin-bottom: 0.5rem; }
+        .map-result p { font-size: 0.85rem; color: var(--gray); }
+
+        .travel-times { display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap; }
+
+        .travel-time {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+
+        .travel-time .dot { width: 8px; height: 8px; border-radius: 50%; }
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-5px); }
         }
 
-        .marker-pin {
-            width: 40px;
-            height: 40px;
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.05); }
+        }
+
+        /* Solution Section */
+        .solution { padding: 6rem 2rem; background: linear-gradient(135deg, #ECFEFF 0%, #F0F9FF 100%); }
+
+        .solution-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .solution-text h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1.5rem; }
+
+        .solution-text h2 .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .solution-text p { font-size: 1.1rem; color: var(--gray); margin-bottom: 2rem; }
+        .solution-list { list-style: none; }
+
+        .solution-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .solution-list i {
+            width: 28px;
+            height: 28px;
+            background: var(--success);
+            color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1em;
-            color: white;
-            margin: 0 auto 8px;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            margin-top: 2px;
         }
 
-        .map-marker.user1 .marker-pin,
-        .map-marker.user2 .marker-pin,
-        .map-marker.user3 .marker-pin,
-        .map-marker.user4 .marker-pin {
-            background: var(--secondary);
-        }
-
-        .map-marker.center .marker-pin {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            width: 60px;
-            height: 60px;
-            font-size: 1.5em;
-            box-shadow: 0 0 30px rgba(6, 182, 212, 0.5);
-        }
-
-        .marker-label {
-            font-size: 0.75em;
-            color: white;
-            font-weight: 600;
-        }
-
-        .map-result {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
+        .solution-card {
             background: white;
-            border-radius: 16px;
-            padding: 20px;
+            padding: 2rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
         }
 
-        .map-result h4 {
-            font-size: 1em;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 8px;
-        }
-
-        .map-result p {
-            font-size: 0.85em;
-            color: var(--gray);
-        }
-
-        .map-result .time {
+        .ai-badge {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            background: #ECFEFF;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            color: var(--primary);
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-top: 10px;
+            margin-bottom: 1.5rem;
         }
+
+        .recommendation-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--light-gray);
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .recommendation-item:hover { background: #E0F7FA; transform: translateX(5px); }
+
+        .recommendation-rank {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .recommendation-info h4 { font-size: 0.95rem; margin-bottom: 0.2rem; }
+        .recommendation-info p { font-size: 0.8rem; color: var(--gray); margin: 0; }
+
+        /* Features Section */
+        .features { padding: 6rem 2rem; background: white; }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid var(--light-gray);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+        .feature-card p { color: var(--gray); font-size: 0.95rem; }
+
+        /* How It Works */
+        .how-it-works { padding: 6rem 2rem; background: linear-gradient(135deg, #1F2937 0%, #111827 100%); color: white; }
+        .how-it-works .section-header h2 { color: white; }
+        .how-it-works .section-header p { color: rgba(255,255,255,0.7); }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            position: relative;
+        }
+
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 15%;
+            right: 15%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            z-index: 0;
+        }
+
+        .step { text-align: center; position: relative; z-index: 1; }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 10px 30px rgba(8, 145, 178, 0.4);
+        }
+
+        .step h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+        .step p { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
 
         /* CTA Section */
-        .cta-section {
-            padding: 100px 40px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            text-align: center;
-            color: white;
-        }
+        .cta { padding: 6rem 2rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); text-align: center; color: white; }
+        .cta h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; }
+        .cta p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem; }
 
-        .cta-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .cta-slogan {
-            font-size: 1.2em;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 16px;
-        }
-
-        .cta-title {
-            font-size: 3em;
-            font-weight: 900;
-            margin-bottom: 20px;
-            line-height: 1.3;
-        }
-
-        .cta-subtitle {
-            font-size: 1.2em;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 40px;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-white {
+        .cta .btn-white {
             background: white;
             color: var(--primary);
-            padding: 18px 40px;
-            font-size: 1.1em;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        .btn-white:hover {
+        .cta .btn-white:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
 
-        .btn-outline {
-            background: transparent;
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            padding: 18px 40px;
-            font-size: 1.1em;
-        }
-
-        .btn-outline:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: white;
-        }
+        .cta-links { margin-top: 2rem; display: flex; justify-content: center; gap: 2rem; }
+        .cta-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.95rem; transition: color 0.3s; }
+        .cta-links a:hover { color: white; }
 
         /* Footer */
-        .footer {
-            background: var(--dark);
-            color: white;
-            padding: 60px 40px 30px;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        .footer { background: #111827; color: white; padding: 4rem 2rem 2rem; }
+        .footer-container { max-width: 1200px; margin: 0 auto; }
 
         .footer-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding-bottom: 40px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
         .footer-brand h3 {
-            font-size: 1.5em;
+            font-size: 1.5rem;
             font-weight: 800;
-            margin-bottom: 12px;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .footer-brand p {
-            font-size: 0.95em;
-            color: #94A3B8;
-            margin-bottom: 8px;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 50px;
-        }
-
-        .footer-links h4 {
-            font-size: 0.9em;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-
-        .footer-links a {
-            display: block;
-            color: #94A3B8;
-            text-decoration: none;
-            font-size: 0.9em;
-            margin-bottom: 10px;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover { color: var(--accent); }
+        .footer-brand p { color: rgba(255,255,255,0.6); font-size: 0.95rem; }
+        .footer-links h4 { font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 0.5rem; }
+        .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--primary); }
 
         .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
             text-align: center;
-            font-size: 0.85em;
-            color: #64748B;
+            color: rgba(255,255,255,0.4);
+            font-size: 0.85rem;
         }
 
-        /* Responsive */
-        @media (max-width: 992px) {
-            .hero-container { grid-template-columns: 1fr; text-align: center; }
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .hero-top { grid-template-columns: 1fr; text-align: center; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero-buttons { justify-content: center; }
             .hero-visual { order: -1; }
-            .hero-ctas { justify-content: center; }
-            .problem-grid { grid-template-columns: 1fr; }
-            .ebi-features { grid-template-columns: 1fr; }
-            .midpoint-container { grid-template-columns: 1fr; }
-            .footer-top { flex-direction: column; gap: 40px; }
+            .hero-mockup { transform: none; max-width: 320px; }
+            .hero-features { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+            .problem-grid, .features-grid, .steps { grid-template-columns: 1fr; }
+            .steps::before { display: none; }
+            .solution-content, .midpoint-content { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 768px) {
-            .navbar { padding: 12px 20px; }
-            .nav-links { display: none; }
-            .hero { padding: 120px 20px 60px; }
-            .hero-title { font-size: 2.2em; }
-            .section-title { font-size: 2em; }
-            .stats-container { flex-direction: column; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+            .nav-links.active { display: flex; }
+            .mobile-menu-btn { display: block; }
+            .hero { padding: 6rem 1rem 3rem; }
+            .hero h1 { font-size: 2rem; }
+            .section-header h2, .midpoint-text h2, .cta h2 { font-size: 1.75rem; }
+            .footer-top { grid-template-columns: 1fr; text-align: center; }
+            .cta-links { flex-direction: column; gap: 1rem; }
         }
+
+        .nav-links.active { display: flex; }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">
-                <img src="images/easymoim.png" alt="이지모임">
-                <span class="logo-text">이지모임</span>
-            </a>
-            <div class="nav-links">
-                <a href="#problem">문제점</a>
-                <a href="#ebi">이비서</a>
+            <a href="#" class="logo"><span class="logo-icon">📅</span>이지모임</a>
+            <div class="nav-links" id="navLinks">
+                <a href="#features">기능</a>
                 <a href="#midpoint">중간지점</a>
-                <a href="ir.html">IR 자료</a>
-                <a href="https://prototypeeasymoim.vercel.app/" class="nav-cta" target="_blank">지금 시작하기</a>
+                <a href="#how-it-works">사용방법</a>
+                <a href="https://prototypeeasymoim.vercel.app/" class="nav-cta" target="_blank">서비스 체험하기</a>
             </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <i class="fas fa-robot"></i>
-                    AI 모임비서 이비서가 도와드려요!
+            <div class="hero-top">
+                <div class="hero-content">
+                    <div class="hero-badge"><i class="fas fa-sparkles"></i>AI 기반 스마트 약속 조율</div>
+                    <h1>단톡방 일정 조율,<br><span class="gradient-text">이제 그만 하세요</span></h1>
+                    <p class="hero-subtitle">100개 넘는 메시지 정리하지 말고<br><strong>AI가 3분 만에 자동으로 끝내드립니다</strong></p>
+                    <div class="hero-buttons">
+                        <a href="https://prototypeeasymoim.vercel.app/" class="btn btn-primary" target="_blank">지금 시작하기 <i class="fas fa-arrow-right"></i></a>
+                        <a href="#features" class="btn btn-secondary">더 알아보기</a>
+                    </div>
                 </div>
-                <h1 class="hero-title">
-                    더 <span class="highlight">이지</span>한 모임!<br>
-                    모임비서 <span class="highlight">이비서</span>
-                </h1>
-                <p class="hero-slogan">🎵 언제 만나? 어디서 만나? 이비서한테 맡겨! 🎵</p>
-                <p class="hero-desc">
-                    카톡방에서 "언제 돼?" 물어보다 지치셨죠?<br>
-                    <strong>이비서</strong>가 일정 조율, 중간지점, 맛집 추천까지 전부 알아서 해드려요!
-                </p>
-                <div class="hero-pain">
-                    <p>
-                        <strong>❌ 100개 넘는 카톡 메시지</strong>로 약속 잡기 지겹지 않으세요?<br>
-                        <strong>❌ "거기 너무 멀어" "난 그날 안돼"</strong> 조율하다 싸우기 직전?<br>
-                        <strong>❌ 맛집 검색하다 시간 다 가고</strong> 결국 아무데나 가본 적?
-                    </p>
-                </div>
-                <div class="hero-ctas">
-                    <a href="https://prototypeeasymoim.vercel.app/" class="btn btn-primary" target="_blank">
-                        <i class="fas fa-rocket"></i> 무료로 시작하기
-                    </a>
-                    <a href="ir.html" class="btn btn-secondary">
-                        <i class="fas fa-file-alt"></i> IR 자료 보기
-                    </a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="hero-phone">
-                    <div class="phone-screen">
-                        <div class="phone-header">
-                            <div class="phone-avatar">🤖</div>
-                            <div class="phone-info">
-                                <h4>이비서 알림</h4>
-                                <p>오늘 오전 9:00</p>
-                            </div>
+                <div class="hero-visual">
+                    <div class="hero-mockup">
+                        <div class="mockup-header">
+                            <h3>🎉 대학 동기 모임</h3>
+                            <p>AI 추천 결과가 도착했어요!</p>
                         </div>
-                        <div class="ebi-message">
-                            <p>
-                                안녕하세요! <strong>이비서</strong>예요 👋<br>
-                                <strong>"주말 등산 모임"</strong> 일정이 확정됐어요!<br>
-                                11월 15일(토) 오전 10시, 강남역에서 만나요!
-                            </p>
-                        </div>
-                        <div class="phone-feature done">
-                            <div class="icon cyan"><i class="fas fa-calendar-check"></i></div>
-                            <div class="text">
-                                <h5>일정 투표 완료</h5>
-                                <p>5명 전원 응답 완료</p>
+                        <div class="mockup-content">
+                            <div class="mockup-item">
+                                <i class="fas fa-calendar-check"></i>
+                                <div class="mockup-item-text"><h4>12월 7일 (토) 18:00</h4><p>5명 전원 가능</p></div>
                             </div>
-                            <i class="fas fa-check-circle check"></i>
-                        </div>
-                        <div class="phone-feature done">
-                            <div class="icon purple"><i class="fas fa-map-pin"></i></div>
-                            <div class="text">
-                                <h5>중간지점 확정</h5>
-                                <p>강남역 (평균 32분)</p>
+                            <div class="mockup-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div class="mockup-item-text"><h4>강남역 3번 출구</h4><p>중간지점 자동 계산</p></div>
                             </div>
-                            <i class="fas fa-check-circle check"></i>
-                        </div>
-                        <div class="phone-feature done">
-                            <div class="icon orange"><i class="fas fa-utensils"></i></div>
-                            <div class="text">
-                                <h5>맛집 추천</h5>
-                                <p>한식당 A ⭐4.8</p>
+                            <div class="mockup-item">
+                                <i class="fas fa-utensils"></i>
+                                <div class="mockup-item-text"><h4>육회본가 강남점</h4><p>⭐ 4.8 • 인당 25,000원</p></div>
                             </div>
-                            <i class="fas fa-check-circle check"></i>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Stats Bar -->
-    <section class="stats-bar">
-        <div class="stats-container">
-            <div class="stat-item">
-                <div class="stat-value">2시간→3분</div>
-                <div class="stat-label">일정 조율 시간 97% 단축</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-value">100개→0개</div>
-                <div class="stat-label">카톡 메시지 제로</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-value">78%</div>
-                <div class="stat-label">조율 스트레스 해결</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-value">2,500만</div>
-                <div class="stat-label">2030 잠재 고객</div>
+            <!-- 핵심 기능 3가지 -->
+            <div class="hero-features">
+                <div class="hero-feature-card">
+                    <div class="hero-feature-icon calendar">📅</div>
+                    <h3>일정 투표</h3>
+                    <p>링크 하나로 모두의 가능한 시간을<br>자동으로 취합해요</p>
+                </div>
+                <div class="hero-feature-card">
+                    <div class="hero-feature-icon location">📍</div>
+                    <h3>중간지점 추천</h3>
+                    <p>각자 출발지를 입력하면<br>최적의 만남 장소를 찾아드려요</p>
+                </div>
+                <div class="hero-feature-card">
+                    <div class="hero-feature-icon restaurant">🍽️</div>
+                    <h3>맛집 추천</h3>
+                    <p>분위기, 예산에 맞는<br>주변 맛집까지 AI가 골라요</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Problem Section -->
-    <section class="problem-section" id="problem">
+    <section class="problem">
         <div class="section-container">
             <div class="section-header">
-                <span class="section-tag"><i class="fas fa-exclamation-triangle"></i> 이런 경험 있으시죠?</span>
-                <h2 class="section-title">모임 조율, 왜 이렇게 <span style="color: var(--danger);">지옥</span>일까요?</h2>
-                <p class="section-subtitle">
-                    직장인, 대학생 10명 중 8명이 모임 일정 조율에 스트레스를 느낍니다.<br>
-                    소중한 만남을 준비하다 에너지가 다 빠져버려요.
-                </p>
+                <h2>이런 경험, 있으시죠? 😫</h2>
+                <p>약속 하나 잡는데 왜 이렇게 힘들까요</p>
             </div>
             <div class="problem-grid">
                 <div class="problem-card">
-                    <div class="problem-icon">💬</div>
-                    <h3>"언제 돼?" 지옥</h3>
-                    <p>
-                        카톡방에 "다들 언제 괜찮아?" 물어보면<br>
-                        100개 넘는 메시지가 쏟아져요.<br>
-                        결국 정리하다 포기하죠.
-                    </p>
-                    <div class="problem-stat">
-                        <div class="value">2시간+</div>
-                        <div class="label">평균 조율 시간</div>
-                    </div>
+                    <div class="emoji">💬</div>
+                    <h3>"언제 돼?" 폭탄</h3>
+                    <p>단톡방에서 100개 넘는 메시지가<br>오고가는데 결론은 없고...</p>
                 </div>
                 <div class="problem-card">
-                    <div class="problem-icon">📍</div>
+                    <div class="emoji">🗺️</div>
                     <h3>"어디서 만나?" 전쟁</h3>
-                    <p>
-                        서울, 인천, 분당, 수원...<br>
-                        다들 위치가 달라서 중간지점 정하기 애매해요.<br>
-                        "거기 너무 멀어" 한마디에 싸움 직전!
-                    </p>
-                    <div class="problem-stat">
-                        <div class="value">65%</div>
-                        <div class="label">장소 갈등 경험</div>
-                    </div>
+                    <p>서울, 인천, 수원... 각자 사는 곳이 달라서<br>어디서 만나야 공평한지 모르겠고...</p>
                 </div>
                 <div class="problem-card">
-                    <div class="problem-icon">🍽️</div>
-                    <h3>"뭐 먹을까?" 무한루프</h3>
-                    <p>
-                        장소 정하고 나면 맛집 검색 시작.<br>
-                        블로그 후기, 평점 비교하다 시간 다 가요.<br>
-                        결국 아무데나 가서 후회하죠.
-                    </p>
-                    <div class="problem-stat">
-                        <div class="value">45분</div>
-                        <div class="label">맛집 검색 시간</div>
-                    </div>
+                    <div class="emoji">😤</div>
+                    <h3>총대 메는 사람</h3>
+                    <p>결국 한 명이 다 정리하고<br>예약까지 해야 하는 현실...</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Ebi Section -->
-    <section class="ebi-section" id="ebi">
-        <div class="ebi-container">
-            <div class="ebi-header">
-                <div class="ebi-intro">
-                    <div class="ebi-avatar">🤖</div>
-                    <span class="ebi-name">AI 모임비서 이비서</span>
-                </div>
-                <h2>이젠 <span class="highlight">이비서</span>한테 맡기세요!</h2>
-                <p>
-                    바쁜 당신, 일일이 조율할 시간 없잖아요?<br>
-                    <strong>이비서</strong>가 일정, 장소, 맛집까지 전부 알아서 해드려요!
-                </p>
-            </div>
-            <div class="ebi-features">
-                <div class="ebi-feature">
-                    <div class="ebi-feature-icon cyan">📅</div>
-                    <h3>스마트 일정 투표</h3>
-                    <p>
-                        링크 하나 공유하면 끝! 참석자들이 클릭만으로 가능한 시간을 선택하면<br>
-                        이비서가 최적의 시간을 자동으로 찾아드려요.
-                    </p>
-                    <div class="speech">5명 모두 가능한 시간은 11월 15일(토) 오전 10시예요!</div>
-                </div>
-                <div class="ebi-feature">
-                    <div class="ebi-feature-icon purple">📍</div>
-                    <h3>중간지점 자동 계산</h3>
-                    <p>
-                        각자 출발 위치만 입력하면 이비서가 모두에게 공정한 중간 지점을 찾아드려요.<br>
-                        대중교통 시간까지 계산해서 추천해요.
-                    </p>
-                    <div class="speech">4명의 중간지점은 강남역이에요! 평균 이동시간 32분이에요.</div>
-                </div>
-                <div class="ebi-feature">
-                    <div class="ebi-feature-icon orange">🍽️</div>
-                    <h3>AI 맛집 추천</h3>
-                    <p>
-                        모임 목적, 인원수, 분위기에 맞는 맛집을 이비서가 추천해드려요.<br>
-                        평점, 리뷰까지 분석해서 최고의 선택지만 알려드려요.
-                    </p>
-                    <div class="speech">등산 후 든든한 한식 어때요? 북한산 맛집 A 추천드려요! ⭐4.8</div>
-                </div>
-                <div class="ebi-feature">
-                    <div class="ebi-feature-icon green">🔔</div>
-                    <h3>매일 알림으로 관리</h3>
-                    <p>
-                        모임 일정이 다가오면 이비서가 알아서 알려드려요.<br>
-                        미응답자 리마인더, D-day 알림까지! 신경 쓸 필요 없어요.
-                    </p>
-                    <div class="speech">내일 모임이에요! 장소: 강남역 북한산 맛집 A. 잊지 마세요! 🎉</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Midpoint Section -->
-    <section class="midpoint-section" id="midpoint">
-        <div class="midpoint-container">
+    <!-- 중간지점 계산 섹션 -->
+    <section class="midpoint" id="midpoint">
+        <div class="section-container">
             <div class="midpoint-content">
-                <h2>
-                    <span class="highlight">어디서 만나?</span> 고민 끝!<br>
-                    이비서가 계산해드려요
-                </h2>
-                <p>
-                    서울, 인천, 분당, 수원... 다들 위치가 달라서 중간지점 정하기 애매하죠?<br>
-                    이비서가 각자 출발지를 분석해서 <strong>모두에게 공정한 중간 지점</strong>을 찾아드려요!
-                </p>
-                <div class="midpoint-benefits">
-                    <div class="midpoint-benefit">
-                        <i class="fas fa-check-circle"></i>
-                        <span>대중교통 시간 기반 최적 위치 계산</span>
+                <div class="midpoint-text">
+                    <h2>"어디서 만나?" 고민 끝!<br><span class="highlight">중간지점 자동 계산</span></h2>
+                    <p class="desc">서울, 인천, 분당, 일산... 각자 사는 곳이 달라도 걱정 마세요.<br>모두의 출발지를 입력하면, AI가 <strong>이동시간이 가장 공평한 장소</strong>를 찾아드려요.</p>
+                    <div class="midpoint-benefits">
+                        <div class="midpoint-benefit"><i class="fas fa-subway"></i><span>대중교통 기준 이동시간 계산</span></div>
+                        <div class="midpoint-benefit"><i class="fas fa-balance-scale"></i><span>모두에게 공평한 위치 추천</span></div>
+                        <div class="midpoint-benefit"><i class="fas fa-store"></i><span>주변 맛집/카페까지 한 번에</span></div>
                     </div>
-                    <div class="midpoint-benefit">
-                        <i class="fas fa-check-circle"></i>
-                        <span>모두에게 공정한 이동 거리</span>
-                    </div>
-                    <div class="midpoint-benefit">
-                        <i class="fas fa-check-circle"></i>
-                        <span>주변 맛집, 카페까지 한 번에 추천</span>
+                </div>
+                <div class="midpoint-visual">
+                    <div class="map-demo">
+                        <div class="map-header"><i class="fas fa-map-marked-alt"></i><h4>중간지점 계산 결과</h4></div>
+                        <div class="map-container">
+                            <svg class="connection-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <line x1="20" y1="25" x2="50" y2="50"/>
+                                <line x1="30" y1="65" x2="50" y2="50"/>
+                                <line x1="75" y1="35" x2="50" y2="50"/>
+                                <line x1="65" y1="70" x2="50" y2="50"/>
+                            </svg>
+                            <div class="map-marker user1"><div class="pin"><i class="fas fa-user"></i></div><span class="label">민지 (서울)</span></div>
+                            <div class="map-marker user2"><div class="pin"><i class="fas fa-user"></i></div><span class="label">수현 (인천)</span></div>
+                            <div class="map-marker user3"><div class="pin"><i class="fas fa-user"></i></div><span class="label">지훈 (분당)</span></div>
+                            <div class="map-marker user4"><div class="pin"><i class="fas fa-user"></i></div><span class="label">예은 (수원)</span></div>
+                            <div class="map-marker center"><div class="pin"><i class="fas fa-star"></i></div><span class="label">중간지점</span></div>
+                        </div>
+                        <div class="map-result">
+                            <div class="map-result-header"><i class="fas fa-check-circle"></i><span>AI 추천 중간지점</span></div>
+                            <h4>🚇 강남역</h4>
+                            <p>4명 모두 평균 35분 이내 도착 가능</p>
+                            <div class="travel-times">
+                                <div class="travel-time"><span class="dot" style="background: #3B82F6;"></span>민지 32분</div>
+                                <div class="travel-time"><span class="dot" style="background: #8B5CF6;"></span>수현 38분</div>
+                                <div class="travel-time"><span class="dot" style="background: #EC4899;"></span>지훈 35분</div>
+                                <div class="travel-time"><span class="dot" style="background: #F59E0B;"></span>예은 40분</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="midpoint-visual">
-                <div class="map-demo">
-                    <div class="map-marker user1">
-                        <div class="marker-pin"><i class="fas fa-user"></i></div>
-                        <span class="marker-label">민지 (서울)</span>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="section-container">
+            <div class="solution-content">
+                <div class="solution-text">
+                    <h2><span class="gradient-text">이지모임</span>이<br>다 해결해드려요</h2>
+                    <p>AI가 모두의 일정을 분석하고, 최적의 시간과 장소를 추천합니다.<br>이제 약속 잡기, 클릭 몇 번이면 끝!</p>
+                    <ul class="solution-list">
+                        <li><i class="fas fa-check"></i><span>카톡으로 간편하게 공유, 클릭만으로 일정 응답</span></li>
+                        <li><i class="fas fa-check"></i><span>모두의 위치를 고려한 중간 지점 자동 계산</span></li>
+                        <li><i class="fas fa-check"></i><span>예산, 분위기에 맞는 맛집까지 AI가 추천</span></li>
+                        <li><i class="fas fa-check"></i><span>설치 없이 웹에서 바로 사용 가능</span></li>
+                    </ul>
+                </div>
+                <div class="solution-visual">
+                    <div class="solution-card">
+                        <div class="ai-badge"><i class="fas fa-robot"></i>AI 추천</div>
+                        <p style="margin-bottom: 1rem; color: var(--gray); font-size: 0.9rem;">5명의 일정과 위치를 분석했어요</p>
+                        <div class="recommendation-item">
+                            <div class="recommendation-rank">1</div>
+                            <div class="recommendation-info"><h4>12/7(토) 18:00 • 강남역</h4><p>전원 참석 가능 • 평균 32분</p></div>
+                        </div>
+                        <div class="recommendation-item">
+                            <div class="recommendation-rank">2</div>
+                            <div class="recommendation-info"><h4>12/8(일) 12:00 • 홍대입구역</h4><p>4명 참석 가능 • 평균 28분</p></div>
+                        </div>
+                        <div class="recommendation-item">
+                            <div class="recommendation-rank">3</div>
+                            <div class="recommendation-info"><h4>12/14(토) 19:00 • 건대입구역</h4><p>전원 참석 가능 • 평균 35분</p></div>
+                        </div>
                     </div>
-                    <div class="map-marker user2">
-                        <div class="marker-pin"><i class="fas fa-user"></i></div>
-                        <span class="marker-label">수현 (인천)</span>
-                    </div>
-                    <div class="map-marker user3">
-                        <div class="marker-pin"><i class="fas fa-user"></i></div>
-                        <span class="marker-label">지훈 (분당)</span>
-                    </div>
-                    <div class="map-marker user4">
-                        <div class="marker-pin"><i class="fas fa-user"></i></div>
-                        <span class="marker-label">예은 (수원)</span>
-                    </div>
-                    <div class="map-marker center">
-                        <div class="marker-pin"><i class="fas fa-star"></i></div>
-                        <span class="marker-label">중간지점</span>
-                    </div>
-                    <div class="map-result">
-                        <h4>🎯 추천 중간지점: 강남역</h4>
-                        <p>4명 평균 이동시간을 최소화한 최적의 만남 장소예요!</p>
-                        <span class="time"><i class="fas fa-clock"></i> 평균 32분</span>
-                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>왜 <span style="color: var(--primary);">이지모임</span>일까요?</h2>
+                <p>약속 조율의 모든 고민을 AI가 해결해드립니다</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <h3>초간편 일정 조율</h3>
+                    <p>카톡으로 링크 공유하면 끝! 모두의 가능한 시간을 자동으로 취합해요.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #10B981, #059669);"><i class="fas fa-map-marker-alt"></i></div>
+                    <h3>중간지점 자동 계산</h3>
+                    <p>각자 출발지를 입력하면 이동시간이 공평한 최적의 만남 장소를 찾아드려요.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #F59E0B, #D97706);"><i class="fas fa-utensils"></i></div>
+                    <h3>맛집 추천</h3>
+                    <p>분위기, 예산에 맞는 주변 맛집을 AI가 골라드려요.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);"><i class="fas fa-comments"></i></div>
+                    <h3>실시간 채팅</h3>
+                    <p>모임별 전용 채팅방에서 자유롭게 소통하세요.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #EC4899, #DB2777);"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>설치 불필요</h3>
+                    <p>URL만으로 바로 접속! 앱 설치 없이 웹에서 모든 게 가능해요.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #14B8A6, #0D9488);"><i class="fas fa-bell"></i></div>
+                    <h3>알림 기능</h3>
+                    <p>미응답자에게 리마인더, 일정 확정 알림까지 자동으로 보내드려요.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #2563EB, #3B82F6);"><i class="fas fa-robot"></i></div>
+                    <h3>AI 비서 '이비서'</h3>
+                    <p>매일 아침 오늘의 일정 알림! 다가오는 모임도 미리 리마인드해 드려요.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>3단계로 끝나는 약속 잡기</h2>
+                <p>복잡한 과정은 이제 그만! 클릭 몇 번으로 모든 게 해결됩니다</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>모임 만들고 공유</h3>
+                    <p>모임을 만들고 카톡으로<br>초대 링크를 공유하세요</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>일정 & 위치 입력</h3>
+                    <p>참석자들이 가능한 시간과<br>출발지를 입력하면 자동 취합</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>AI 추천 & 확정</h3>
+                    <p>AI가 최적의 시간, 중간지점,<br>맛집을 추천하면 클릭으로 확정!</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="cta-container">
-            <p class="cta-slogan">🎵 더 이지한 모임! 모임비서 이비서! 🎵</p>
-            <h2 class="cta-title">
-                지금 바로 이비서를<br>
-                만나보세요!
-            </h2>
-            <p class="cta-subtitle">
-                카톡방에서 100개 메시지 보내지 말고,<br>
-                이비서한테 맡기세요. 3분이면 끝!
-            </p>
-            <div class="cta-buttons">
-                <a href="https://prototypeeasymoim.vercel.app/" class="btn btn-white" target="_blank">
-                    <i class="fas fa-rocket"></i> 무료로 시작하기
-                </a>
-                <a href="ir.html" class="btn btn-outline">
-                    <i class="fas fa-file-alt"></i> IR 자료 보기
-                </a>
+    <section class="cta">
+        <div class="section-container">
+            <h2>"언제, 어디서 만날까?" 고민 끝!</h2>
+            <p>복잡한 단체 약속도 클릭 몇 번이면 완료<br>시간, 중간지점, 맛집까지 AI가 완벽하게 추천합니다</p>
+            <a href="https://prototypeeasymoim.vercel.app/" class="btn btn-white" target="_blank">지금 바로 시작하기 <i class="fas fa-arrow-right"></i></a>
+            <div class="cta-links">
+                <a href="ir.html"><i class="fas fa-file-alt"></i> IR 자료 보기</a>
+                <a href="business-plan.html"><i class="fas fa-file-powerpoint"></i> 사업계획서 보기</a>
+                <a href="mailto:contact@easymoim.com"><i class="fas fa-envelope"></i> 문의하기</a>
             </div>
         </div>
     </section>
@@ -1305,28 +1088,80 @@
         <div class="footer-container">
             <div class="footer-top">
                 <div class="footer-brand">
-                    <h3>이지모임</h3>
-                    <p>더 이지한 모임! 모임비서 이비서!</p>
-                    <p>AI가 일정, 장소, 맛집까지 다 해결해드려요.</p>
+                    <h3>📅 이지모임</h3>
+                    <p>AI가 만드는 완벽한 만남<br>약속 잡기의 새로운 기준</p>
                 </div>
                 <div class="footer-links">
-                    <div>
-                        <h4>서비스</h4>
-                        <a href="https://prototypeeasymoim.vercel.app/" target="_blank">서비스 체험</a>
-                        <a href="ir.html">IR 자료</a>
-                        <a href="business-plan.html">사업계획서</a>
-                    </div>
-                    <div>
-                        <h4>문의</h4>
-                        <a href="mailto:contact@easymoim.com">contact@easymoim.com</a>
-                        <a href="https://github.com/somoon0422" target="_blank">GitHub</a>
-                    </div>
+                    <h4>서비스</h4>
+                    <ul>
+                        <li><a href="https://prototypeeasymoim.vercel.app/" target="_blank">서비스 체험</a></li>
+                        <li><a href="#features">기능 소개</a></li>
+                        <li><a href="#how-it-works">사용 방법</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>자료</h4>
+                    <ul>
+                        <li><a href="ir.html">IR 자료</a></li>
+                        <li><a href="business-plan.html">사업계획서</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>고객지원</h4>
+                    <ul>
+                        <li><a href="mailto:contact@easymoim.com">문의하기</a></li>
+                        <li><a href="#">이용약관</a></li>
+                        <li><a href="#">개인정보처리방침</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 이지모임. All rights reserved.</p>
+                <p>© 2024 이지모임. All rights reserved.</p>
             </div>
         </div>
     </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.problem-card, .feature-card, .step, .solution-card, .hero-feature-card, .map-demo').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>

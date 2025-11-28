@@ -6,16 +6,13 @@
     <title>이지모임 - 사업계획서</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --primary: #2563EB;
-            --primary-dark: #1D4ED8;
-            --secondary: #3B82F6;
-            --accent: #60A5FA;
+            --primary: #4338CA;
+            --secondary: #667EEA;
+            --accent: #764BA2;
             --success: #10B981;
             --warning: #F59E0B;
             --danger: #EF4444;
@@ -23,7 +20,6 @@
             --gray: #64748B;
             --light: #F8FAFC;
             --white: #FFFFFF;
-            --ebi-blue: #2563EB;
         }
 
         body {
@@ -63,16 +59,16 @@
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 6px;
+            gap: 8px;
             z-index: 1000;
-            background: rgba(0,0,0,0.85);
+            background: rgba(0,0,0,0.8);
             padding: 12px 20px;
             border-radius: 30px;
         }
 
         .slide-dot {
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background: rgba(255,255,255,0.3);
             cursor: pointer;
@@ -81,7 +77,7 @@
 
         .slide-dot.active {
             background: var(--primary);
-            transform: scale(1.4);
+            transform: scale(1.3);
         }
 
         .nav-btn {
@@ -134,121 +130,59 @@
             transition: width 0.3s;
         }
 
-        .pdf-btn {
-            position: fixed;
-            top: 30px;
-            left: 30px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 0.85em;
-            font-weight: 600;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
-        }
-
-        .pdf-btn:hover {
-            background: var(--primary-dark);
-            transform: scale(1.05);
-        }
-
         /* ===== SLIDE 1: Cover ===== */
         .slide-cover {
-            background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 50%, #3B82F6 100%);
+            background: linear-gradient(135deg, #1E1B4B 0%, #312E81 100%);
             flex-direction: column;
             justify-content: center;
             align-items: center;
             color: white;
             text-align: center;
             padding: 60px;
-            position: relative;
-            overflow: hidden;
         }
 
-        .slide-cover::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            right: -30%;
-            width: 80%;
-            height: 150%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-        }
-
-        .cover-logo {
-            width: 120px;
-            height: 120px;
+        .cover-icon {
+            width: 100px;
+            height: 100px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
             margin-bottom: 30px;
-            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .cover-badge {
-            background: rgba(255,255,255,0.15);
-            padding: 10px 24px;
-            border-radius: 30px;
-            font-size: 0.9em;
-            font-weight: 500;
             backdrop-filter: blur(10px);
-            margin-bottom: 24px;
-            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .cover-title {
-            font-size: 4.5em;
+            font-size: 4em;
             font-weight: 900;
             margin-bottom: 16px;
-            letter-spacing: -3px;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            letter-spacing: -2px;
         }
 
         .cover-subtitle {
-            font-size: 1.6em;
+            font-size: 1.5em;
             font-weight: 400;
-            opacity: 0.9;
-            margin-bottom: 20px;
+            opacity: 0.8;
+            color: #A5B4FC;
+            margin-bottom: 30px;
         }
 
-        .cover-tagline {
-            font-size: 1.3em;
-            font-weight: 700;
-            color: #BFDBFE;
-            margin-bottom: 40px;
-        }
-
-        .cover-info {
-            display: flex;
-            gap: 30px;
-            margin-top: 20px;
-        }
-
-        .cover-info-item {
+        .cover-badge {
             background: rgba(255,255,255,0.1);
-            padding: 12px 24px;
-            border-radius: 12px;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 0.95em;
+            font-weight: 500;
             backdrop-filter: blur(10px);
+            margin-bottom: 10px;
         }
 
-        .cover-info-item span {
-            display: block;
-            font-size: 0.75em;
-            opacity: 0.7;
-            margin-bottom: 4px;
-        }
-
-        .cover-info-item strong {
-            font-size: 1em;
+        .cover-year {
+            font-size: 1.2em;
+            color: #A5B4FC;
+            font-weight: 700;
         }
 
         /* ===== Common Slide Layout ===== */
@@ -258,8 +192,8 @@
         }
 
         .slide-info {
-            width: 40%;
-            padding: 50px 45px;
+            width: 42%;
+            padding: 50px 40px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -267,7 +201,7 @@
         }
 
         .slide-visual {
-            width: 60%;
+            width: 58%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -276,166 +210,71 @@
         }
 
         .slide-number {
-            font-size: 4.5em;
+            font-size: 5em;
             font-weight: 900;
-            color: rgba(37, 99, 235, 0.08);
+            color: rgba(67, 56, 202, 0.08);
             position: absolute;
-            top: 15px;
-            left: 45px;
+            top: 20px;
+            left: 40px;
         }
 
         .slide-tag {
             display: inline-block;
             padding: 6px 16px;
             border-radius: 20px;
-            font-size: 0.75em;
-            font-weight: 700;
-            margin-bottom: 16px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: 20px;
             color: white;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        .tag-problem { background: linear-gradient(135deg, #DC2626, #EF4444); }
-        .tag-solution { background: linear-gradient(135deg, #059669, #10B981); }
-        .tag-product { background: linear-gradient(135deg, #2563EB, #3B82F6); }
-        .tag-market { background: linear-gradient(135deg, #DB2777, #EC4899); }
-        .tag-business { background: linear-gradient(135deg, #D97706, #F59E0B); }
-        .tag-team { background: linear-gradient(135deg, #7C3AED, #8B5CF6); }
-        .tag-plan { background: linear-gradient(135deg, #0891B2, #06B6D4); }
-        .tag-kpi { background: linear-gradient(135deg, #059669, #10B981); }
+        .tag-problem { background: var(--danger); }
+        .tag-solution { background: var(--success); }
+        .tag-feature { background: var(--secondary); }
+        .tag-market { background: #EC4899; }
+        .tag-business { background: var(--warning); }
+        .tag-dev { background: #3B82F6; }
 
         .slide-title {
-            font-size: 2.3em;
+            font-size: 2.4em;
             font-weight: 800;
             color: var(--dark);
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             line-height: 1.3;
-            letter-spacing: -1px;
         }
 
         .slide-desc {
             font-size: 1em;
             color: var(--gray);
             line-height: 1.8;
-            margin-bottom: 24px;
-        }
-
-        /* Executive Summary */
-        .exec-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            width: 95%;
-        }
-
-        .exec-card {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
-            border: 1px solid #E2E8F0;
-            transition: all 0.3s;
-        }
-
-        .exec-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-        }
-
-        .exec-card .icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2em;
-            margin-bottom: 12px;
-        }
-
-        .exec-card .icon.blue { background: #DBEAFE; color: #2563EB; }
-        .exec-card .icon.green { background: #D1FAE5; color: #059669; }
-        .exec-card .icon.orange { background: #FEF3C7; color: #D97706; }
-        .exec-card .icon.pink { background: #FCE7F3; color: #DB2777; }
-
-        .exec-card h4 {
-            font-size: 0.85em;
-            color: var(--gray);
-            margin-bottom: 6px;
-            font-weight: 500;
-        }
-
-        .exec-card p {
-            font-size: 1em;
-            color: var(--dark);
-            font-weight: 700;
-            line-height: 1.5;
+            margin-bottom: 30px;
         }
 
         /* Problem Cards */
-        .problem-container {
-            width: 95%;
-        }
-
-        .problem-stats {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 20px;
-        }
-
-        .problem-stat {
-            flex: 1;
-            background: linear-gradient(135deg, #FEE2E2, #FECACA);
-            border-radius: 16px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .problem-stat .value {
-            font-size: 2.2em;
-            font-weight: 900;
-            color: #DC2626;
-        }
-
-        .problem-stat .label {
-            font-size: 0.8em;
-            color: #991B1B;
-            margin-top: 6px;
-        }
-
         .problem-cards {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 16px;
+            width: 90%;
         }
 
         .problem-card {
-            background: white;
-            border-radius: 14px;
-            padding: 18px 20px;
+            background: var(--light);
+            border-radius: 16px;
+            padding: 20px;
             display: flex;
             align-items: center;
             gap: 16px;
-            border: 1px solid #FEE2E2;
             transition: all 0.3s;
         }
 
         .problem-card:hover {
-            transform: translateX(8px);
+            transform: translateX(10px);
             background: #FEF2F2;
-            border-color: #FECACA;
         }
 
         .problem-icon {
-            width: 48px;
-            height: 48px;
-            background: #FEE2E2;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3em;
-            flex-shrink: 0;
+            font-size: 2em;
         }
 
         .problem-content h4 {
@@ -450,404 +289,231 @@
             color: var(--gray);
         }
 
-        /* Solution - Ebi Section */
-        .solution-container {
-            width: 95%;
-        }
-
-        .ebi-hero {
-            background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
+        /* Stats Box */
+        .stats-box {
+            background: #FEF2F2;
+            border: 2px solid #FECACA;
             border-radius: 20px;
-            padding: 24px;
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            margin-bottom: 20px;
+            padding: 30px;
+            text-align: center;
+            width: 200px;
         }
 
-        .ebi-avatar {
-            width: 80px;
-            height: 80px;
-            flex-shrink: 0;
+        .stats-box .value {
+            font-size: 2.5em;
+            font-weight: 900;
+            color: var(--danger);
         }
 
-        .ebi-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .ebi-intro h3 {
-            font-size: 1.3em;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 8px;
-        }
-
-        .ebi-intro p {
-            font-size: 0.9em;
+        .stats-box .label {
+            font-size: 0.85em;
             color: var(--gray);
-            line-height: 1.6;
+            margin-top: 8px;
         }
 
-        .solution-features {
+        /* Solution Cards */
+        .solution-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        .solution-feature {
-            background: white;
-            border-radius: 14px;
-            padding: 18px;
-            border: 2px solid transparent;
-            transition: all 0.3s;
-        }
-
-        .solution-feature:hover {
-            border-color: var(--primary);
-            transform: translateY(-4px);
-        }
-
-        .solution-feature .icon {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-
-        .solution-feature h4 {
-            font-size: 0.95em;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 4px;
-        }
-
-        .solution-feature p {
-            font-size: 0.8em;
-            color: var(--gray);
-        }
-
-        /* Product Features */
-        .product-container {
-            width: 95%;
-        }
-
-        .product-main {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 1fr 1fr;
             gap: 16px;
-            margin-bottom: 16px;
+            width: 90%;
         }
 
-        .product-card {
+        .solution-card {
             background: white;
             border-radius: 16px;
-            padding: 22px;
-            border: 1px solid #E2E8F0;
+            padding: 24px;
+            border: 2px solid #E2E8F0;
             transition: all 0.3s;
         }
 
-        .product-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        .product-card .icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4em;
-            margin-bottom: 14px;
+        .solution-card.blue { border-color: #3B82F6; }
+        .solution-card.purple { border-color: #8B5CF6; }
+        .solution-card.orange { border-color: #F59E0B; }
+        .solution-card.green { border-color: #10B981; }
+
+        .solution-card .icon {
+            font-size: 1.5em;
+            margin-bottom: 12px;
         }
 
-        .product-card .icon.blue { background: #DBEAFE; }
-        .product-card .icon.purple { background: #EDE9FE; }
-        .product-card .icon.green { background: #D1FAE5; }
-
-        .product-card h4 {
+        .solution-card h4 {
             font-size: 1em;
             font-weight: 700;
             color: var(--dark);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
-        .product-card p {
-            font-size: 0.82em;
-            color: var(--gray);
-            line-height: 1.6;
-        }
-
-        .product-card ul {
-            list-style: none;
-            margin-top: 12px;
-        }
-
-        .product-card li {
+        .solution-card p {
             font-size: 0.8em;
             color: var(--gray);
-            padding: 4px 0;
-            display: flex;
-            align-items: center;
-            gap: 6px;
         }
 
-        .product-card li::before {
-            content: "✓";
-            color: var(--success);
-            font-weight: bold;
-        }
-
-        .product-highlight {
-            background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
-            border-radius: 14px;
-            padding: 18px 22px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .product-highlight .text {
-            font-size: 0.95em;
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .product-highlight .badge {
-            background: var(--primary);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            font-weight: 700;
-        }
-
-        /* Market Size */
-        .market-container {
+        /* Feature List */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
             width: 95%;
         }
 
-        .tam-sam-som {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .market-tier {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .market-tier:hover {
-            transform: scale(1.02);
-        }
-
-        .market-tier.tam {
-            width: 340px;
-            height: 90px;
-            background: linear-gradient(135deg, #1E3A8A, #2563EB);
-            border-radius: 16px 16px 0 0;
-        }
-
-        .market-tier.sam {
-            width: 260px;
-            height: 80px;
-            background: linear-gradient(135deg, #2563EB, #3B82F6);
-        }
-
-        .market-tier.som {
-            width: 180px;
-            height: 70px;
-            background: linear-gradient(135deg, #3B82F6, #60A5FA);
-            border-radius: 0 0 16px 16px;
-        }
-
-        .market-tier .label {
-            font-size: 0.75em;
-            opacity: 0.8;
-            margin-right: 10px;
-        }
-
-        .market-tier .value {
-            font-size: 1.5em;
-        }
-
-        .market-details {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-        }
-
-        .market-detail {
+        .feature-box {
             background: white;
-            border-radius: 14px;
-            padding: 16px;
-            text-align: center;
+            border-radius: 16px;
+            padding: 24px;
             border: 1px solid #E2E8F0;
         }
 
-        .market-detail h5 {
-            font-size: 0.75em;
-            color: var(--gray);
-            margin-bottom: 6px;
-            font-weight: 500;
-        }
-
-        .market-detail p {
-            font-size: 0.85em;
+        .feature-box h4 {
+            font-size: 1em;
+            font-weight: 700;
             color: var(--dark);
-            font-weight: 600;
-        }
-
-        /* Target Customer */
-        .target-container {
-            width: 95%;
-        }
-
-        .target-main {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
             margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .feature-box ul {
+            list-style: none;
+        }
+
+        .feature-box li {
+            font-size: 0.85em;
+            color: var(--gray);
+            padding: 6px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feature-box li::before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Target Cards */
+        .target-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 90%;
         }
 
         .target-card {
             background: white;
             border-radius: 16px;
-            padding: 22px;
+            padding: 24px;
             border: 1px solid #E2E8F0;
         }
 
-        .target-card .header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 14px;
-        }
-
-        .target-card .avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5em;
-        }
-
-        .target-card .avatar.pink { background: #FCE7F3; }
-        .target-card .avatar.blue { background: #DBEAFE; }
-
         .target-card h4 {
-            font-size: 1.05em;
+            font-size: 1.1em;
             font-weight: 700;
             color: var(--dark);
-        }
-
-        .target-card h4 span {
-            font-size: 0.8em;
-            color: var(--gray);
-            font-weight: 500;
+            margin-bottom: 8px;
         }
 
         .target-card .desc {
-            font-size: 0.85em;
+            font-size: 0.9em;
             color: var(--gray);
             margin-bottom: 12px;
-            line-height: 1.5;
         }
 
         .target-card .pain {
-            background: #FEF2F2;
-            border-radius: 10px;
-            padding: 12px;
+            font-size: 0.85em;
+            color: #EC4899;
         }
 
-        .target-card .pain h5 {
-            font-size: 0.75em;
-            color: #DC2626;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .target-card .pain p {
-            font-size: 0.8em;
-            color: #991B1B;
-        }
-
-        .target-primary {
-            background: linear-gradient(135deg, #FEF3C7, #FDE68A);
-            border-radius: 14px;
-            padding: 18px 22px;
+        .target-highlight {
+            background: #FEF3C7;
+            border: 2px solid #F59E0B;
+            border-radius: 16px;
+            padding: 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        .target-primary .info h4 {
+        .target-highlight h4 {
             font-size: 1em;
             font-weight: 700;
-            color: #92400E;
-            margin-bottom: 4px;
+            color: var(--dark);
+            margin-bottom: 6px;
         }
 
-        .target-primary .info p {
+        .target-highlight p {
             font-size: 0.85em;
-            color: #A16207;
+            color: var(--gray);
         }
 
-        .target-primary .percent {
-            font-size: 2.5em;
+        .target-highlight .percent {
+            font-size: 2em;
             font-weight: 900;
             color: #D97706;
         }
 
-        /* Competition */
-        .comp-container {
-            width: 98%;
+        /* Market Stats */
+        .market-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 90%;
         }
 
+        .market-stat {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            border: 1px solid #E2E8F0;
+        }
+
+        .market-stat .value {
+            font-size: 2em;
+            font-weight: 900;
+            color: var(--secondary);
+        }
+
+        .market-stat .label {
+            font-size: 0.85em;
+            color: var(--gray);
+            margin-top: 8px;
+        }
+
+        /* Comparison Table */
         .comp-table {
-            width: 100%;
+            width: 95%;
             background: white;
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            margin-bottom: 16px;
         }
 
         .comp-header, .comp-row {
             display: grid;
-            grid-template-columns: 1.5fr repeat(4, 1fr);
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
         }
 
         .comp-cell {
-            padding: 14px 10px;
+            padding: 16px 12px;
             text-align: center;
-            font-size: 0.8em;
+            font-size: 0.85em;
         }
 
         .comp-header .comp-cell {
-            background: var(--primary);
+            background: var(--secondary);
             color: white;
             font-weight: 700;
         }
 
-        .comp-header .comp-cell:first-child {
-            text-align: left;
-            padding-left: 20px;
-        }
-
         .comp-row .comp-cell {
             background: #F9FAFB;
-            border-bottom: 1px solid #E2E8F0;
         }
 
         .comp-row:nth-child(even) .comp-cell {
@@ -856,354 +522,181 @@
 
         .comp-row .comp-cell:first-child {
             text-align: left;
-            padding-left: 20px;
             font-weight: 600;
             color: var(--dark);
         }
 
-        .comp-row .comp-cell:nth-child(2) {
-            background: #EFF6FF;
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .check-icon { color: var(--success); font-size: 1.1em; }
-        .x-icon { color: var(--danger); font-size: 1.1em; }
-        .partial-icon { color: var(--warning); font-size: 1.1em; }
-
-        .comp-advantage {
-            background: linear-gradient(135deg, #D1FAE5, #A7F3D0);
-            border-radius: 12px;
-            padding: 14px 18px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .comp-advantage .icon {
-            font-size: 1.5em;
-        }
-
-        .comp-advantage .text {
-            font-size: 0.9em;
-            font-weight: 600;
-            color: #065F46;
-        }
+        .check-icon { color: var(--success); font-size: 1.2em; }
+        .x-icon { color: var(--danger); font-size: 1.2em; }
+        .partial-icon { color: var(--warning); font-size: 1.2em; }
 
         /* Business Model */
-        .biz-container {
-            width: 95%;
-        }
-
-        .biz-phases {
+        .biz-cards {
             display: flex;
-            gap: 16px;
-            margin-bottom: 16px;
+            flex-direction: column;
+            gap: 20px;
+            width: 90%;
         }
 
-        .biz-phase {
-            flex: 1;
+        .biz-card {
             background: white;
             border-radius: 16px;
-            padding: 20px;
-            border: 2px solid #E2E8F0;
-            position: relative;
-        }
-
-        .biz-phase::after {
-            content: "→";
-            position: absolute;
-            right: -18px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.5em;
-            color: var(--gray);
-        }
-
-        .biz-phase:last-child::after {
-            display: none;
-        }
-
-        .biz-phase .step {
-            font-size: 0.7em;
-            font-weight: 700;
-            color: white;
-            background: var(--primary);
-            padding: 4px 10px;
-            border-radius: 10px;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-
-        .biz-phase h4 {
-            font-size: 0.95em;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 6px;
-        }
-
-        .biz-phase p {
-            font-size: 0.8em;
-            color: var(--gray);
-            line-height: 1.5;
-        }
-
-        .biz-revenue {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-        }
-
-        .revenue-card {
-            background: white;
-            border-radius: 14px;
-            padding: 18px;
+            padding: 24px;
             border-left: 4px solid;
         }
 
-        .revenue-card.ad { border-color: var(--warning); }
-        .revenue-card.partner { border-color: var(--success); }
-        .revenue-card.premium { border-color: var(--secondary); }
+        .biz-card.ad { border-color: var(--warning); }
+        .biz-card.partner { border-color: var(--success); }
 
-        .revenue-card h4 {
-            font-size: 0.9em;
+        .biz-card h4 {
+            font-size: 1em;
             font-weight: 700;
             color: var(--dark);
-            margin-bottom: 4px;
+            margin-bottom: 8px;
         }
 
-        .revenue-card .percent {
-            font-size: 1.3em;
-            font-weight: 900;
-            margin-bottom: 6px;
-        }
-
-        .revenue-card.ad .percent { color: var(--warning); }
-        .revenue-card.partner .percent { color: var(--success); }
-        .revenue-card.premium .percent { color: var(--secondary); }
-
-        .revenue-card p {
-            font-size: 0.75em;
+        .biz-card p {
+            font-size: 0.85em;
             color: var(--gray);
         }
 
-        /* Development Plan */
-        .dev-container {
-            width: 95%;
+        .biz-strategy {
+            background: #FEF3C7;
+            border-radius: 16px;
+            padding: 20px;
         }
 
-        .dev-timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            margin-bottom: 16px;
+        .biz-strategy h4 {
+            font-size: 0.9em;
+            font-weight: 700;
+            color: #92400E;
+            margin-bottom: 10px;
         }
 
-        .dev-item {
+        .biz-strategy p {
+            font-size: 0.85em;
+            color: #78350F;
+        }
+
+        /* Timeline */
+        .timeline {
+            width: 85%;
+        }
+
+        .timeline-item {
             display: flex;
             align-items: flex-start;
-            gap: 16px;
-            background: white;
-            border-radius: 14px;
-            padding: 16px 18px;
-            border: 1px solid #E2E8F0;
+            gap: 20px;
+            margin-bottom: 24px;
+            position: relative;
         }
 
-        .dev-item .dot {
-            width: 36px;
-            height: 36px;
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: 15px;
+            top: 35px;
+            width: 2px;
+            height: calc(100% + 10px);
+            background: #E2E8F0;
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-dot {
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 0.85em;
+            font-size: 0.8em;
             flex-shrink: 0;
         }
 
-        .dev-item .dot.done { background: var(--success); }
-        .dev-item .dot.current { background: var(--primary); }
-        .dev-item .dot.pending { background: #CBD5E1; }
+        .timeline-dot.done { background: var(--success); }
+        .timeline-dot.current { background: #3B82F6; }
+        .timeline-dot.pending { background: #CBD5E1; }
 
-        .dev-item .content {
+        .timeline-content {
             flex: 1;
         }
 
-        .dev-item .period {
-            font-size: 0.7em;
+        .timeline-content .status {
+            font-size: 0.75em;
             font-weight: 700;
             margin-bottom: 4px;
         }
 
-        .dev-item .period.done { color: var(--success); }
-        .dev-item .period.current { color: var(--primary); }
-        .dev-item .period.pending { color: #94A3B8; }
+        .timeline-content .status.done { color: var(--success); }
+        .timeline-content .status.current { color: #3B82F6; }
+        .timeline-content .status.pending { color: #94A3B8; }
 
-        .dev-item h4 {
-            font-size: 0.9em;
+        .timeline-content h4 {
+            font-size: 0.95em;
             font-weight: 700;
             color: var(--dark);
             margin-bottom: 4px;
         }
 
-        .dev-item p {
+        .timeline-content p {
             font-size: 0.8em;
             color: var(--gray);
         }
 
-        .tech-box {
-            background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
-            border-radius: 14px;
-            padding: 16px 20px;
+        .tech-stack {
+            background: #EFF6FF;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 20px;
         }
 
-        .tech-box h4 {
-            font-size: 0.85em;
+        .tech-stack h4 {
+            font-size: 0.9em;
             font-weight: 700;
-            color: var(--primary);
+            color: #1D4ED8;
             margin-bottom: 10px;
         }
 
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .tech-tag {
-            background: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.75em;
-            font-weight: 600;
+        .tech-stack p {
+            font-size: 0.85em;
             color: var(--dark);
         }
 
-        /* Team */
-        .team-container {
-            width: 95%;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-
-        .team-card {
-            background: white;
-            border-radius: 16px;
-            padding: 22px;
-            border: 1px solid #E2E8F0;
-        }
-
-        .team-card .header {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 14px;
-        }
-
-        .team-card .avatar {
-            width: 54px;
-            height: 54px;
-            background: linear-gradient(135deg, #DBEAFE, #BFDBFE);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4em;
-        }
-
-        .team-card .info h4 {
-            font-size: 1em;
-            font-weight: 700;
-            color: var(--dark);
-        }
-
-        .team-card .info .role {
-            font-size: 0.8em;
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .team-card .bio {
-            font-size: 0.82em;
-            color: var(--gray);
-            line-height: 1.6;
-        }
-
-        .team-card .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 12px;
-        }
-
-        .team-card .skill {
-            background: #F1F5F9;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.7em;
-            font-weight: 500;
-            color: var(--dark);
-        }
-
-        .team-needs {
-            background: linear-gradient(135deg, #FEF3C7, #FDE68A);
-            border-radius: 14px;
-            padding: 16px 20px;
-        }
-
-        .team-needs h4 {
-            font-size: 0.9em;
-            font-weight: 700;
-            color: #92400E;
-            margin-bottom: 8px;
-        }
-
-        .team-needs p {
-            font-size: 0.82em;
-            color: #A16207;
-        }
-
-        /* KPI */
-        .kpi-container {
-            width: 95%;
-        }
-
+        /* KPI Cards */
         .kpi-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
-            margin-bottom: 16px;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 90%;
         }
 
         .kpi-card {
             background: white;
             border-radius: 16px;
-            padding: 20px;
+            padding: 24px;
             border: 2px solid;
         }
 
-        .kpi-card.blue { border-color: var(--primary); }
+        .kpi-card.purple { border-color: var(--secondary); }
         .kpi-card.green { border-color: var(--success); }
         .kpi-card.orange { border-color: var(--warning); }
         .kpi-card.pink { border-color: #EC4899; }
 
         .kpi-card .label {
-            font-size: 0.75em;
+            font-size: 0.8em;
             color: var(--gray);
-            font-weight: 500;
             margin-bottom: 8px;
         }
 
         .kpi-card .value {
-            font-size: 2em;
+            font-size: 1.8em;
             font-weight: 900;
             color: var(--dark);
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
 
         .kpi-card .target {
@@ -1211,304 +704,85 @@
             color: var(--gray);
         }
 
-        .milestone-box {
-            background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
-            border-radius: 14px;
-            padding: 18px 22px;
-        }
-
-        .milestone-box h4 {
-            font-size: 0.9em;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 12px;
-        }
-
-        .milestones {
-            display: flex;
-            gap: 20px;
-        }
-
-        .milestone {
-            flex: 1;
-            text-align: center;
-        }
-
-        .milestone .period {
-            font-size: 0.7em;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 4px;
-        }
-
-        .milestone .goal {
-            font-size: 0.82em;
-            color: var(--dark);
-            font-weight: 600;
-        }
-
-        /* Budget */
-        .budget-container {
-            width: 95%;
-        }
-
-        .budget-summary {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-
-        .budget-total {
-            flex: 1;
-            background: linear-gradient(135deg, #1E3A8A, #2563EB);
-            border-radius: 16px;
-            padding: 24px;
-            color: white;
-            text-align: center;
-        }
-
-        .budget-total .label {
-            font-size: 0.85em;
-            opacity: 0.8;
-            margin-bottom: 8px;
-        }
-
-        .budget-total .value {
-            font-size: 2.5em;
-            font-weight: 900;
-        }
-
-        .budget-total .sub {
-            font-size: 0.8em;
-            opacity: 0.7;
-            margin-top: 8px;
-        }
-
-        .budget-chart {
-            flex: 1.5;
+        /* Budget Table */
+        .budget-table {
+            width: 85%;
             background: white;
             border-radius: 16px;
-            padding: 20px;
-            border: 1px solid #E2E8F0;
-        }
-
-        .budget-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .budget-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .budget-item .name {
-            width: 100px;
-            font-size: 0.8em;
-            color: var(--dark);
-            font-weight: 600;
-        }
-
-        .budget-item .bar-container {
-            flex: 1;
-            height: 20px;
-            background: #F1F5F9;
-            border-radius: 10px;
             overflow: hidden;
-            margin: 0 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
-        .budget-item .bar {
-            height: 100%;
-            border-radius: 10px;
-        }
-
-        .budget-item .bar.dev { background: var(--primary); width: 40%; }
-        .budget-item .bar.marketing { background: var(--warning); width: 30%; }
-        .budget-item .bar.infra { background: var(--success); width: 15%; }
-        .budget-item .bar.other { background: #94A3B8; width: 15%; }
-
-        .budget-item .amount {
-            width: 80px;
-            font-size: 0.8em;
-            font-weight: 700;
-            color: var(--dark);
-            text-align: right;
-        }
-
-        .budget-details {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-        }
-
-        .budget-detail {
-            background: white;
-            border-radius: 14px;
-            padding: 16px;
-            text-align: center;
-            border: 1px solid #E2E8F0;
-        }
-
-        .budget-detail .icon {
-            font-size: 1.5em;
-            margin-bottom: 8px;
-        }
-
-        .budget-detail h5 {
-            font-size: 0.8em;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 4px;
-        }
-
-        .budget-detail p {
-            font-size: 0.75em;
-            color: var(--gray);
-        }
-
-        /* Risk Management */
-        .risk-container {
-            width: 95%;
-        }
-
-        .risk-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
-        }
-
-        .risk-card {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
-            border: 1px solid #E2E8F0;
-        }
-
-        .risk-card .header {
+        .budget-row {
             display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
+            justify-content: space-between;
+            padding: 16px 24px;
+            border-bottom: 1px solid #E2E8F0;
         }
 
-        .risk-card .icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1em;
+        .budget-row:nth-child(even) {
+            background: var(--light);
         }
 
-        .risk-card .icon.red { background: #FEE2E2; color: #DC2626; }
-        .risk-card .icon.orange { background: #FEF3C7; color: #D97706; }
-        .risk-card .icon.blue { background: #DBEAFE; color: #2563EB; }
-        .risk-card .icon.purple { background: #EDE9FE; color: #7C3AED; }
+        .budget-row.total {
+            background: var(--secondary);
+            color: white;
+        }
 
-        .risk-card h4 {
+        .budget-row .item {
+            font-size: 0.95em;
+            color: var(--dark);
+        }
+
+        .budget-row.total .item {
+            color: white;
+            font-weight: 700;
+        }
+
+        .budget-row .amount {
             font-size: 0.95em;
             font-weight: 700;
-            color: var(--dark);
+            color: var(--secondary);
         }
 
-        .risk-card .risk-desc {
-            font-size: 0.8em;
-            color: var(--gray);
-            margin-bottom: 10px;
-        }
-
-        .risk-card .solution {
-            background: #F0FDF4;
-            border-radius: 10px;
-            padding: 10px 12px;
-        }
-
-        .risk-card .solution h5 {
-            font-size: 0.7em;
-            color: #059669;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .risk-card .solution p {
-            font-size: 0.75em;
-            color: #065F46;
+        .budget-row.total .amount {
+            color: white;
         }
 
         /* Closing Slide */
         .slide-closing {
-            background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 50%, #3B82F6 100%);
+            background: linear-gradient(135deg, #1E1B4B 0%, #312E81 100%);
             flex-direction: column;
             justify-content: center;
             align-items: center;
             color: white;
             text-align: center;
             padding: 60px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .slide-closing::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            right: -30%;
-            width: 80%;
-            height: 150%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-        }
-
-        .closing-logo {
-            width: 100px;
-            margin-bottom: 30px;
-            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
         }
 
         .closing-title {
             font-size: 3.5em;
             font-weight: 900;
-            margin-bottom: 20px;
-            letter-spacing: -2px;
+            margin-bottom: 30px;
+        }
+
+        .closing-subtitle {
+            font-size: 1.2em;
+            opacity: 0.8;
+            color: #A5B4FC;
+            margin-bottom: 50px;
+            line-height: 1.8;
+        }
+
+        .closing-brand {
+            font-size: 1.8em;
+            font-weight: 800;
+            margin-bottom: 10px;
         }
 
         .closing-tagline {
-            font-size: 1.4em;
-            font-weight: 700;
-            color: #BFDBFE;
-            margin-bottom: 40px;
-        }
-
-        .closing-message {
-            font-size: 1.1em;
-            opacity: 0.9;
-            line-height: 1.8;
-            max-width: 600px;
-            margin-bottom: 40px;
-        }
-
-        .closing-contact {
-            display: flex;
-            gap: 30px;
-        }
-
-        .closing-contact-item {
-            background: rgba(255,255,255,0.1);
-            padding: 14px 28px;
-            border-radius: 14px;
-            backdrop-filter: blur(10px);
-        }
-
-        .closing-contact-item span {
-            display: block;
-            font-size: 0.75em;
-            opacity: 0.7;
-            margin-bottom: 4px;
-        }
-
-        .closing-contact-item strong {
-            font-size: 0.95em;
+            font-size: 1em;
+            color: #A5B4FC;
         }
     </style>
 </head>
@@ -1516,12 +790,8 @@
     <div class="progress-bar" id="progressBar"></div>
 
     <div class="slide-counter">
-        <span id="current">01</span> / <span id="total">15</span>
+        <span id="current">01</span> / <span id="total">12</span>
     </div>
-
-    <button class="pdf-btn" onclick="downloadPDF()">
-        <i class="fas fa-file-pdf"></i> PDF 다운로드
-    </button>
 
     <button class="nav-btn prev" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
     <button class="nav-btn next" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
@@ -1529,325 +799,177 @@
     <div class="presentation">
         <!-- SLIDE 1: Cover -->
         <div class="slide slide-cover active">
-            <img src="images/easymoim.png" alt="이지모임" class="cover-logo">
-            <div class="cover-badge">2025 예비창업패키지 / 초기창업패키지 사업계획서</div>
+            <div class="cover-icon">📅</div>
             <h1 class="cover-title">이지모임</h1>
-            <p class="cover-subtitle">AI 모임비서 '이비서'가 만드는</p>
-            <p class="cover-tagline">더 이지한 모임! 모임비서 이비서!</p>
-            <div class="cover-info">
-                <div class="cover-info-item">
-                    <span>대표자</span>
-                    <strong>홍길동</strong>
-                </div>
-                <div class="cover-info-item">
-                    <span>창업 예정일</span>
-                    <strong>2025년 1월</strong>
-                </div>
-                <div class="cover-info-item">
-                    <span>신청 분야</span>
-                    <strong>ICT/SW</strong>
-                </div>
-            </div>
+            <p class="cover-subtitle">모임의 A부터 Z까지, 당신의 모임비서</p>
+            <div class="cover-badge">사업계획서 | 초창패 / 소상공인 지원사업</div>
+            <div class="cover-year">2025</div>
         </div>
 
-        <!-- SLIDE 2: Executive Summary -->
+        <!-- SLIDE 2: Problem -->
         <div class="slide">
             <div class="slide-split">
                 <div class="slide-info">
                     <div class="slide-number">01</div>
-                    <span class="slide-tag tag-plan">Executive Summary</span>
-                    <h2 class="slide-title">사업 개요</h2>
+                    <span class="slide-tag tag-problem">Problem</span>
+                    <h2 class="slide-title">모임, 왜 이렇게<br>복잡할까요?</h2>
                     <p class="slide-desc">
-                        이지모임은 AI 모임비서 '이비서'를 통해 모임의 일정 조율부터 장소 선정, 정산까지 모임의 전 과정을 자동화하는 올인원 모임 관리 플랫폼입니다.
+                        직장인, 대학생의 모임 준비 과정에서 발생하는 번거로움을 해결합니다.
                     </p>
-                    <p class="slide-desc" style="margin-bottom: 0;">
-                        <strong style="color: var(--primary);">핵심 가치:</strong> 바쁜 현대인들이 '모임 준비'가 아닌 '모임 자체'에 집중할 수 있도록 합니다.
-                    </p>
+                    <div style="display: flex; gap: 20px;">
+                        <div class="stats-box">
+                            <div class="value">78%</div>
+                            <div class="label">모임 일정 조율에<br>스트레스를 느끼는 비율</div>
+                        </div>
+                        <div class="stats-box">
+                            <div class="value">3일</div>
+                            <div class="label">모임 일정 확정까지<br>걸리는 평균 시간</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="slide-visual" style="background: #F8FAFC;">
-                    <div class="exec-grid">
-                        <div class="exec-card">
-                            <div class="icon blue"><i class="fas fa-lightbulb"></i></div>
-                            <h4>해결하는 문제</h4>
-                            <p>모임 일정 조율에 평균 2시간+, 카톡 100개 이상 소요되는 비효율</p>
+                <div class="slide-visual" style="background: #FEF2F2;">
+                    <div class="problem-cards">
+                        <div class="problem-card">
+                            <div class="problem-icon">📅</div>
+                            <div class="problem-content">
+                                <h4>끝없는 일정 조율</h4>
+                                <p>카톡방에서 언제 되냐고 물어보기만 수십 번</p>
+                            </div>
                         </div>
-                        <div class="exec-card">
-                            <div class="icon green"><i class="fas fa-robot"></i></div>
-                            <h4>솔루션</h4>
-                            <p>AI 비서 '이비서'가 일정 조율, 중간지점, 장소 추천을 자동 처리</p>
+                        <div class="problem-card">
+                            <div class="problem-icon">📍</div>
+                            <div class="problem-content">
+                                <h4>장소 선정의 어려움</h4>
+                                <p>각자 출발지가 다른데, 어디서 만나야 공평할까?</p>
+                            </div>
                         </div>
-                        <div class="exec-card">
-                            <div class="icon orange"><i class="fas fa-chart-line"></i></div>
-                            <h4>목표 시장</h4>
-                            <p>국내 2030세대 2,500만명, 관련 시장 3,200억원 규모</p>
-                        </div>
-                        <div class="exec-card">
-                            <div class="icon pink"><i class="fas fa-won-sign"></i></div>
-                            <h4>수익 모델</h4>
-                            <p>광고 수익(50%) + 제휴 수수료(30%) + B2B 구독(20%)</p>
+                        <div class="problem-card">
+                            <div class="problem-icon">🧾</div>
+                            <div class="problem-content">
+                                <h4>정산의 불편함</h4>
+                                <p>누가 얼마 냈고, 누가 안 보냈는지 추적하기 힘듦</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- SLIDE 3: Problem -->
+        <!-- SLIDE 3: Solution -->
         <div class="slide">
             <div class="slide-split">
                 <div class="slide-info">
                     <div class="slide-number">02</div>
-                    <span class="slide-tag tag-problem">Problem</span>
-                    <h2 class="slide-title">모임 준비,<br>왜 이렇게 피곤할까요?</h2>
-                    <p class="slide-desc">
-                        직장인과 대학생 10명 중 8명이 모임 일정 조율에 스트레스를 받고 있습니다. 단순히 "언제 만날까?"를 정하는 데 수일이 걸리고, 장소 선정과 정산은 또 다른 문제입니다.
-                    </p>
-                    <p class="slide-desc" style="margin-bottom: 0; font-weight: 600; color: var(--danger);">
-                        결국 모임을 포기하거나 총무 역할을 맡은 사람만 지치게 됩니다.
-                    </p>
-                </div>
-                <div class="slide-visual" style="background: #FEF2F2;">
-                    <div class="problem-container">
-                        <div class="problem-stats">
-                            <div class="problem-stat">
-                                <div class="value">78%</div>
-                                <div class="label">일정 조율에<br>스트레스 경험</div>
-                            </div>
-                            <div class="problem-stat">
-                                <div class="value">2시간+</div>
-                                <div class="label">모임 준비에<br>소요되는 시간</div>
-                            </div>
-                            <div class="problem-stat">
-                                <div class="value">100+</div>
-                                <div class="label">일정 확정까지<br>카톡 메시지 수</div>
-                            </div>
-                        </div>
-                        <div class="problem-cards">
-                            <div class="problem-card">
-                                <div class="problem-icon">📅</div>
-                                <div class="problem-content">
-                                    <h4>"언제 돼?" "나는 금요일 빼고 다 돼" "난 주말만..."</h4>
-                                    <p>일정 조율만 3일, 결국 흐지부지되는 모임</p>
-                                </div>
-                            </div>
-                            <div class="problem-card">
-                                <div class="problem-icon">📍</div>
-                                <div class="problem-content">
-                                    <h4>"어디서 만나?" "난 강남이 편해" "난 홍대가 좋은데..."</h4>
-                                    <p>각자 출발지가 다른데 공평한 중간지점은 어디?</p>
-                                </div>
-                            </div>
-                            <div class="problem-card">
-                                <div class="problem-icon">💸</div>
-                                <div class="problem-content">
-                                    <h4>"정산해야 되는데..." "누가 아직 안 보냈지?"</h4>
-                                    <p>정산 추적의 번거로움, 총무의 고통</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SLIDE 4: Solution -->
-        <div class="slide">
-            <div class="slide-split">
-                <div class="slide-info">
-                    <div class="slide-number">03</div>
                     <span class="slide-tag tag-solution">Solution</span>
-                    <h2 class="slide-title">AI 모임비서<br>'이비서'를 소개합니다</h2>
+                    <h2 class="slide-title">이지모임이<br>해결합니다</h2>
                     <p class="slide-desc">
-                        이비서는 모임 준비의 모든 번거로움을 대신 처리해주는 AI 비서입니다. 일정 조율부터 장소 추천, 정산까지 한 번에!
-                    </p>
-                    <p class="slide-desc" style="margin-bottom: 0;">
-                        <strong style="color: var(--success);">"이제 모임 준비는 이비서에게 맡기세요. 당신은 모임만 즐기면 됩니다."</strong>
+                        모임의 A부터 Z까지, 당신의 모임비서가 되어드립니다.
                     </p>
                 </div>
                 <div class="slide-visual" style="background: #F0FDF4;">
-                    <div class="solution-container">
-                        <div class="ebi-hero">
-                            <div class="ebi-avatar">
-                                <img src="images/easymoim.png" alt="이비서">
-                            </div>
-                            <div class="ebi-intro">
-                                <h3>안녕하세요, 이비서예요! 👋</h3>
-                                <p>"모임 일정 정리해드릴까요? 매일 아침 오늘의 모임 일정을 알려드리고, 다가오는 모임도 미리 리마인드해 드릴게요!"</p>
-                            </div>
+                    <div class="solution-grid">
+                        <div class="solution-card blue">
+                            <div class="icon">📅</div>
+                            <h4>일정 조율</h4>
+                            <p>투표 기반 자동 일정 확정</p>
                         </div>
-                        <div class="solution-features">
-                            <div class="solution-feature">
-                                <div class="icon">📅</div>
-                                <h4>스마트 일정 조율</h4>
-                                <p>투표 링크 하나로 전원 일정 파악 → 최적 날짜 자동 확정</p>
-                            </div>
-                            <div class="solution-feature">
-                                <div class="icon">📍</div>
-                                <h4>AI 중간지점 추천</h4>
-                                <p>대중교통 시간 기반 공정한 중간 위치 계산</p>
-                            </div>
-                            <div class="solution-feature">
-                                <div class="icon">🍽️</div>
-                                <h4>맞춤 장소 추천</h4>
-                                <p>모임 성격, 인원수 고려한 최적 맛집/카페 추천</p>
-                            </div>
-                            <div class="solution-feature">
-                                <div class="icon">🔔</div>
-                                <h4>일정 알림 서비스</h4>
-                                <p>매일 아침 오늘의 일정, D-day 리마인드 자동 발송</p>
-                            </div>
+                        <div class="solution-card purple">
+                            <div class="icon">📍</div>
+                            <h4>중간지점 추천</h4>
+                            <p>출발지 기반 최적 위치 계산</p>
+                        </div>
+                        <div class="solution-card orange">
+                            <div class="icon">🍽️</div>
+                            <h4>장소 추천</h4>
+                            <p>모임 특성 맞춤 맛집/카페</p>
+                        </div>
+                        <div class="solution-card green">
+                            <div class="icon">💰</div>
+                            <h4>자동 정산 (예정)</h4>
+                            <p>1/N 정산, 송금 알림</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- SLIDE 5: Product -->
+        <!-- SLIDE 4: Features -->
         <div class="slide">
             <div class="slide-split">
                 <div class="slide-info" style="width: 35%;">
-                    <div class="slide-number">04</div>
-                    <span class="slide-tag tag-product">Product</span>
-                    <h2 class="slide-title">핵심 기능 상세</h2>
+                    <div class="slide-number">03</div>
+                    <span class="slide-tag tag-feature">Features</span>
+                    <h2 class="slide-title">핵심 기능</h2>
                     <p class="slide-desc">
-                        모임의 A부터 Z까지, 이비서가 함께합니다. 복잡한 과정은 자동화하고, 사용자는 결과만 확인하면 됩니다.
+                        모임 준비의 모든 단계를 간편하게 해결합니다.
                     </p>
                 </div>
                 <div class="slide-visual" style="width: 65%; background: #F8FAFC;">
-                    <div class="product-container">
-                        <div class="product-main">
-                            <div class="product-card">
-                                <div class="icon blue">📅</div>
-                                <h4>스마트 일정 조율</h4>
-                                <p>투표 링크 공유만으로 전원 일정 파악</p>
-                                <ul>
-                                    <li>카카오톡 공유 가능</li>
-                                    <li>실시간 투표 현황</li>
-                                    <li>AI 최적 날짜 추천</li>
-                                    <li>자동 일정 확정 알림</li>
-                                </ul>
-                            </div>
-                            <div class="product-card">
-                                <div class="icon purple">📍</div>
-                                <h4>중간지점 추천</h4>
-                                <p>출발지 기반 공정한 위치 계산</p>
-                                <ul>
-                                    <li>주소/역명 간편 입력</li>
-                                    <li>대중교통 시간 기반</li>
-                                    <li>지도 시각화 제공</li>
-                                    <li>주변 핫플 연동</li>
-                                </ul>
-                            </div>
-                            <div class="product-card">
-                                <div class="icon green">🍽️</div>
-                                <h4>맞춤 장소 추천</h4>
-                                <p>모임 성격에 딱 맞는 장소 제안</p>
-                                <ul>
-                                    <li>목적별 필터링</li>
-                                    <li>인원수 고려 추천</li>
-                                    <li>평점/리뷰 기반</li>
-                                    <li>예약 연동 (예정)</li>
-                                </ul>
-                            </div>
+                    <div class="feature-grid">
+                        <div class="feature-box">
+                            <h4>📅 스마트 일정 조율</h4>
+                            <ul>
+                                <li>투표 링크 공유로 간편 참여</li>
+                                <li>가능 일정 자동 집계</li>
+                                <li>최적 날짜 AI 추천</li>
+                            </ul>
                         </div>
-                        <div class="product-highlight">
-                            <div class="text">🔔 매일 아침 이비서가 오늘의 일정을 알려드려요!</div>
-                            <div class="badge">Coming Soon: 자동 정산 기능</div>
+                        <div class="feature-box">
+                            <h4>📍 중간지점 추천</h4>
+                            <ul>
+                                <li>각자 출발지 입력</li>
+                                <li>대중교통 시간 기반 계산</li>
+                                <li>공정한 중간 위치 제안</li>
+                            </ul>
+                        </div>
+                        <div class="feature-box">
+                            <h4>🍽️ 맞춤 장소 추천</h4>
+                            <ul>
+                                <li>모임 목적별 필터</li>
+                                <li>인원수 고려 추천</li>
+                                <li>평점/리뷰 기반 정렬</li>
+                            </ul>
+                        </div>
+                        <div class="feature-box">
+                            <h4>💰 자동 정산 (예정)</h4>
+                            <ul>
+                                <li>영수증 촬영 자동 입력</li>
+                                <li>1/N 자동 계산</li>
+                                <li>송금 요청 알림</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- SLIDE 6: Market Size -->
+        <!-- SLIDE 5: Target Market -->
         <div class="slide">
             <div class="slide-split">
                 <div class="slide-info">
-                    <div class="slide-number">05</div>
-                    <span class="slide-tag tag-market">Market Size</span>
-                    <h2 class="slide-title">시장 규모 분석</h2>
+                    <div class="slide-number">04</div>
+                    <span class="slide-tag tag-market">Target Market</span>
+                    <h2 class="slide-title">누가 사용할까요?</h2>
                     <p class="slide-desc">
-                        국내 2030세대 2,500만명이 월 평균 4.2회 모임을 갖습니다. 모임 조율 시장은 빠르게 성장 중이며, 통합 솔루션에 대한 수요가 높습니다.
-                    </p>
-                    <p class="slide-desc" style="margin-bottom: 0; font-size: 0.9em; color: var(--gray);">
-                        *출처: 2024 MZ세대 라이프스타일 조사, 한국갤럽
-                    </p>
-                </div>
-                <div class="slide-visual" style="background: #F8FAFC;">
-                    <div class="market-container">
-                        <div class="tam-sam-som">
-                            <div class="market-tier tam">
-                                <span class="label">TAM</span>
-                                <span class="value">3,200억원</span>
-                            </div>
-                            <div class="market-tier sam">
-                                <span class="label">SAM</span>
-                                <span class="value">850억원</span>
-                            </div>
-                            <div class="market-tier som">
-                                <span class="label">SOM</span>
-                                <span class="value">120억원</span>
-                            </div>
-                        </div>
-                        <div class="market-details">
-                            <div class="market-detail">
-                                <h5>TAM (전체 시장)</h5>
-                                <p>국내 모임/소셜 서비스 전체 시장</p>
-                            </div>
-                            <div class="market-detail">
-                                <h5>SAM (유효 시장)</h5>
-                                <p>2030 모임 조율 서비스 이용자</p>
-                            </div>
-                            <div class="market-detail">
-                                <h5>SOM (목표 시장)</h5>
-                                <p>3년 내 확보 가능 시장 (점유율 14%)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SLIDE 7: Target Customer -->
-        <div class="slide">
-            <div class="slide-split">
-                <div class="slide-info">
-                    <div class="slide-number">06</div>
-                    <span class="slide-tag tag-market">Target Customer</span>
-                    <h2 class="slide-title">목표 고객</h2>
-                    <p class="slide-desc">
-                        바쁜 일상 속에서도 소중한 사람들과의 만남을 포기하지 않는 분들. 특히 모임을 기획하고 조율하는 '총무' 역할을 자주 맡는 분들이 핵심 타겟입니다.
+                        바쁜 일상 속에서도 소중한 사람들과의 만남을 포기하지 않는 분들
                     </p>
                 </div>
                 <div class="slide-visual" style="background: #FDF4FF;">
-                    <div class="target-container">
-                        <div class="target-main">
-                            <div class="target-card">
-                                <div class="header">
-                                    <div class="avatar pink">👩‍💼</div>
-                                    <h4>직장인 <span>(25-35세)</span></h4>
-                                </div>
-                                <p class="desc">퇴근 후 동료/친구 모임, 동호회, 번개 모임을 즐기는 직장인</p>
-                                <div class="pain">
-                                    <h5>Pain Point</h5>
-                                    <p>바쁜 업무 일정, 다양한 지역 출퇴근으로 조율이 어려움</p>
-                                </div>
-                            </div>
-                            <div class="target-card">
-                                <div class="header">
-                                    <div class="avatar blue">👨‍🎓</div>
-                                    <h4>대학생 <span>(20-24세)</span></h4>
-                                </div>
-                                <p class="desc">동아리, 스터디 그룹, MT, 학과 모임을 활발히 하는 대학생</p>
-                                <div class="pain">
-                                    <h5>Pain Point</h5>
-                                    <p>각기 다른 통학 거리, N빵 정산의 번거로움</p>
-                                </div>
-                            </div>
+                    <div class="target-cards">
+                        <div class="target-card">
+                            <h4>👔 직장인</h4>
+                            <p class="desc">퇴근 후 동료/친구 모임, 동호회, 번개 모임</p>
+                            <p class="pain">Pain Point: 바쁜 일정, 다양한 지역 출퇴근</p>
                         </div>
-                        <div class="target-primary">
-                            <div class="info">
-                                <h4>🎯 1차 핵심 타겟: 20-30대 여성</h4>
-                                <p>소모임 기획자 역할을 주로 담당, 편리한 도구에 대한 높은 니즈</p>
+                        <div class="target-card">
+                            <h4>🎓 대학생</h4>
+                            <p class="desc">동아리, 스터디 그룹, MT, 학과 모임</p>
+                            <p class="pain">Pain Point: 통학 거리, 정산 문제</p>
+                        </div>
+                        <div class="target-highlight">
+                            <div>
+                                <h4>🎯 핵심 타겟: 20-30대 여성</h4>
+                                <p>소모임의 주 기획자 역할, 편리한 도구에 대한 높은 수요</p>
                             </div>
                             <div class="percent">65%</div>
                         </div>
@@ -1856,457 +978,266 @@
             </div>
         </div>
 
-        <!-- SLIDE 8: Competition -->
+        <!-- SLIDE 6: Market Analysis -->
         <div class="slide">
             <div class="slide-split">
-                <div class="slide-info" style="width: 28%;">
-                    <div class="slide-number">07</div>
-                    <span class="slide-tag tag-product">Competition</span>
-                    <h2 class="slide-title">경쟁 분석</h2>
+                <div class="slide-info">
+                    <div class="slide-number">05</div>
+                    <span class="slide-tag tag-feature">Market Analysis</span>
+                    <h2 class="slide-title">시장 기회</h2>
                     <p class="slide-desc">
-                        기존 서비스들은 일정 조율, 장소 검색, 정산 등 각각의 기능만 제공합니다. 이지모임은 유일하게 모임의 전 과정을 하나로 통합합니다.
+                        모임 조율 시장은 빠르게 성장하고 있으며, 통합 솔루션에 대한 수요가 높습니다.
                     </p>
                 </div>
-                <div class="slide-visual" style="width: 72%; background: #F8FAFC;">
-                    <div class="comp-container">
-                        <div class="comp-table">
-                            <div class="comp-header">
-                                <div class="comp-cell">기능 비교</div>
-                                <div class="comp-cell">이지모임</div>
-                                <div class="comp-cell">When2Meet</div>
-                                <div class="comp-cell">카카오톡</div>
-                                <div class="comp-cell">네이버지도</div>
-                            </div>
-                            <div class="comp-row">
-                                <div class="comp-cell">일정 투표 조율</div>
-                                <div class="comp-cell"><i class="fas fa-check-circle check-icon"></i></div>
-                                <div class="comp-cell"><i class="fas fa-check-circle check-icon"></i></div>
-                                <div class="comp-cell"><i class="fas fa-minus-circle partial-icon"></i></div>
-                                <div class="comp-cell"><i class="fas fa-times-circle x-icon"></i></div>
-                            </div>
-                            <div class="comp-row">
-                                <div class="comp-cell">중간지점 추천</div>
-                                <div class="comp-cell"><i class="fas fa-check-circle check-icon"></i></div>
-                                <div class="comp-cell"><i class="fas fa-times-circle x-icon"></i></div>
-                                <div class="comp-cell"><i class="fas fa-times-circle x-icon"></i></div>
-                                <div class="comp-cell"><i class="fas fa-minus-circle partial-icon"></i></div>
-                            </div>
-                            <div class="comp-row">
-                                <div class="comp-cell">맞춤 장소 추천</div>
-                                <div class="comp-cell"><i class="fas fa-check-circle check-icon"></i></div>
-                                <div class="comp-cell"><i class="fas fa-times-circle x-icon"></i></div>
-                                <div class="comp-cell"><i class="fas fa-times-circle x-icon"></i></div>
-                                <div class="comp-cell"><i class="fas fa-check-circle check-icon"></i></div>
-                            </div>
-                            <div class="comp-row">
-                                <div class="comp-cell">AI 비서 알림</div>
-                                <div class="comp-cell"><i class="fas fa-check-circle check-icon"></i></div>
-                                <div class="comp-cell"><i class="fas fa-times-circle x-icon"></i></div>
-                                <div class="comp-cell"><i class="fas fa-times-circle x-icon"></i></div>
-                                <div class="comp-cell"><i class="fas fa-times-circle x-icon"></i></div>
-                            </div>
-                            <div class="comp-row">
-                                <div class="comp-cell">자동 정산</div>
-                                <div class="comp-cell"><i class="fas fa-check-circle check-icon"></i></div>
-                                <div class="comp-cell"><i class="fas fa-times-circle x-icon"></i></div>
-                                <div class="comp-cell"><i class="fas fa-minus-circle partial-icon"></i></div>
-                                <div class="comp-cell"><i class="fas fa-times-circle x-icon"></i></div>
-                            </div>
+                <div class="slide-visual" style="background: #F8FAFC;">
+                    <div class="market-stats">
+                        <div class="market-stat">
+                            <div class="value">2,500만+</div>
+                            <div class="label">국내 2030 인구</div>
                         </div>
-                        <div class="comp-advantage">
-                            <div class="icon">🏆</div>
-                            <div class="text">이지모임의 차별점: 모임의 전 과정을 AI 비서 '이비서'가 원스톱으로 처리하는 유일한 서비스</div>
+                        <div class="market-stat">
+                            <div class="value">월 4.2회</div>
+                            <div class="label">평균 모임 횟수</div>
+                        </div>
+                        <div class="market-stat">
+                            <div class="value">89%</div>
+                            <div class="label">모임 조율 불편함 경험</div>
+                        </div>
+                        <div class="market-stat">
+                            <div class="value">3,200억+</div>
+                            <div class="label">관련 시장 규모</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- SLIDE 9: Business Model -->
+        <!-- SLIDE 7: Competition -->
+        <div class="slide">
+            <div class="slide-split">
+                <div class="slide-info" style="width: 30%;">
+                    <div class="slide-number">06</div>
+                    <span class="slide-tag tag-feature">Competitive Edge</span>
+                    <h2 class="slide-title">경쟁 우위</h2>
+                    <p class="slide-desc">
+                        기존 서비스들은 각각 일부 기능만 제공. 이지모임은 모임의 전 과정을 하나의 플랫폼에서 해결합니다.
+                    </p>
+                </div>
+                <div class="slide-visual" style="width: 70%; background: #F8FAFC;">
+                    <div class="comp-table">
+                        <div class="comp-header">
+                            <div class="comp-cell">기능</div>
+                            <div class="comp-cell">이지모임</div>
+                            <div class="comp-cell">카카오톡</div>
+                            <div class="comp-cell">네이버밴드</div>
+                            <div class="comp-cell">When2Meet</div>
+                        </div>
+                        <div class="comp-row">
+                            <div class="comp-cell">일정 조율</div>
+                            <div class="comp-cell"><i class="fas fa-check-circle check-icon"></i></div>
+                            <div class="comp-cell"><i class="fas fa-minus-circle partial-icon"></i></div>
+                            <div class="comp-cell"><i class="fas fa-check-circle check-icon"></i></div>
+                            <div class="comp-cell"><i class="fas fa-check-circle check-icon"></i></div>
+                        </div>
+                        <div class="comp-row">
+                            <div class="comp-cell">중간지점 추천</div>
+                            <div class="comp-cell"><i class="fas fa-check-circle check-icon"></i></div>
+                            <div class="comp-cell"><i class="fas fa-times-circle x-icon"></i></div>
+                            <div class="comp-cell"><i class="fas fa-times-circle x-icon"></i></div>
+                            <div class="comp-cell"><i class="fas fa-times-circle x-icon"></i></div>
+                        </div>
+                        <div class="comp-row">
+                            <div class="comp-cell">장소 추천</div>
+                            <div class="comp-cell"><i class="fas fa-check-circle check-icon"></i></div>
+                            <div class="comp-cell"><i class="fas fa-times-circle x-icon"></i></div>
+                            <div class="comp-cell"><i class="fas fa-times-circle x-icon"></i></div>
+                            <div class="comp-cell"><i class="fas fa-times-circle x-icon"></i></div>
+                        </div>
+                        <div class="comp-row">
+                            <div class="comp-cell">자동 정산</div>
+                            <div class="comp-cell"><i class="fas fa-check-circle check-icon"></i></div>
+                            <div class="comp-cell"><i class="fas fa-minus-circle partial-icon"></i></div>
+                            <div class="comp-cell"><i class="fas fa-times-circle x-icon"></i></div>
+                            <div class="comp-cell"><i class="fas fa-times-circle x-icon"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: Business Model -->
+        <div class="slide">
+            <div class="slide-split">
+                <div class="slide-info">
+                    <div class="slide-number">07</div>
+                    <span class="slide-tag tag-business">Business Model</span>
+                    <h2 class="slide-title">수익 모델</h2>
+                    <p class="slide-desc">
+                        기본 서비스는 무료로 제공하며, 광고와 제휴를 통해 수익을 창출합니다.
+                    </p>
+                </div>
+                <div class="slide-visual" style="background: #FFFBEB;">
+                    <div class="biz-cards">
+                        <div class="biz-card ad">
+                            <h4>📢 광고 수익 (70%)</h4>
+                            <p>• 장소 추천 시 스폰서 매장 노출<br>• 배너 광고, 네이티브 광고</p>
+                        </div>
+                        <div class="biz-card partner">
+                            <h4>🤝 제휴 수수료 (20%)</h4>
+                            <p>• 예약 연동 시 수수료<br>• 제휴 매장 우선 노출 비용</p>
+                        </div>
+                        <div class="biz-strategy">
+                            <h4>📈 수익화 전략</h4>
+                            <p>1단계: 사용자 확보 (무료) → 2단계: 광고 수익 (배너/네이티브) → 3단계: 제휴 수수료 (장소 예약)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: Development -->
         <div class="slide">
             <div class="slide-split">
                 <div class="slide-info">
                     <div class="slide-number">08</div>
-                    <span class="slide-tag tag-business">Business Model</span>
-                    <h2 class="slide-title">수익 모델</h2>
+                    <span class="slide-tag tag-dev">Development</span>
+                    <h2 class="slide-title">개발 현황</h2>
                     <p class="slide-desc">
-                        기본 서비스는 무료로 제공하여 사용자를 확보하고, 광고와 제휴를 통해 수익을 창출합니다. 이후 B2B 구독 모델로 확장합니다.
+                        현재 MVP 개발 단계로, 핵심 기능인 일정 조율과 중간지점 추천 기능을 우선 개발 중입니다.
                     </p>
                 </div>
-                <div class="slide-visual" style="background: #FFFBEB;">
-                    <div class="biz-container">
-                        <div class="biz-phases">
-                            <div class="biz-phase">
-                                <span class="step">Phase 1</span>
-                                <h4>사용자 확보</h4>
-                                <p>핵심 기능 무료 제공으로 MAU 10만 확보</p>
-                            </div>
-                            <div class="biz-phase">
-                                <span class="step">Phase 2</span>
-                                <h4>B2C 수익화</h4>
-                                <p>광고 + 제휴 수수료로 월 매출 발생</p>
-                            </div>
-                            <div class="biz-phase">
-                                <span class="step">Phase 3</span>
-                                <h4>B2B 확장</h4>
-                                <p>기업용 모임 관리 솔루션 구독 모델</p>
+                <div class="slide-visual" style="background: #EFF6FF;">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot done"><i class="fas fa-check"></i></div>
+                            <div class="timeline-content">
+                                <div class="status done">완료</div>
+                                <h4>기획 및 설계</h4>
+                                <p>서비스 컨셉, UI/UX 설계, DB 설계</p>
                             </div>
                         </div>
-                        <div class="biz-revenue">
-                            <div class="revenue-card ad">
-                                <h4>📢 광고 수익</h4>
-                                <div class="percent">50%</div>
-                                <p>장소 추천 시 스폰서 매장 노출, 배너/네이티브 광고</p>
+                        <div class="timeline-item">
+                            <div class="timeline-dot current"><i class="fas fa-code"></i></div>
+                            <div class="timeline-content">
+                                <div class="status current">진행중</div>
+                                <h4>MVP 개발</h4>
+                                <p>일정 조율, 중간지점 추천 기능 개발</p>
                             </div>
-                            <div class="revenue-card partner">
-                                <h4>🤝 제휴 수수료</h4>
-                                <div class="percent">30%</div>
-                                <p>예약 연동 시 수수료, 제휴 매장 우선 노출비</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot pending"></div>
+                            <div class="timeline-content">
+                                <div class="status pending">예정</div>
+                                <h4>베타 테스트</h4>
+                                <p>소규모 사용자 테스트 및 피드백</p>
                             </div>
-                            <div class="revenue-card premium">
-                                <h4>💼 B2B 구독</h4>
-                                <div class="percent">20%</div>
-                                <p>기업용 팀 빌딩/회식 관리 솔루션 월 구독</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot pending"></div>
+                            <div class="timeline-content">
+                                <div class="status pending">예정</div>
+                                <h4>정식 출시</h4>
+                                <p>웹 서비스 정식 런칭 및 마케팅</p>
                             </div>
+                        </div>
+                        <div class="tech-stack">
+                            <h4>🛠 기술 스택</h4>
+                            <p>React, Node.js, PostgreSQL, Kakao Map API</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- SLIDE 10: Development Plan -->
+        <!-- SLIDE 10: KPI -->
         <div class="slide">
             <div class="slide-split">
                 <div class="slide-info">
                     <div class="slide-number">09</div>
-                    <span class="slide-tag tag-plan">Development</span>
-                    <h2 class="slide-title">개발 현황 및 계획</h2>
+                    <span class="slide-tag tag-feature">KPI & Goals</span>
+                    <h2 class="slide-title">목표 지표</h2>
                     <p class="slide-desc">
-                        현재 MVP 개발 완료 단계로, 일정 조율과 중간지점 추천 기능이 구현되어 있습니다. 베타 테스트를 통해 피드백을 수집 중입니다.
+                        6개월 내 달성을 목표로 하는 핵심 성과 지표입니다.
                     </p>
                 </div>
-                <div class="slide-visual" style="background: #EFF6FF;">
-                    <div class="dev-container">
-                        <div class="dev-timeline">
-                            <div class="dev-item">
-                                <div class="dot done"><i class="fas fa-check"></i></div>
-                                <div class="content">
-                                    <div class="period done">2024.09 - 2024.11 (완료)</div>
-                                    <h4>기획 및 설계</h4>
-                                    <p>서비스 컨셉, UI/UX 디자인, DB 설계, API 명세</p>
-                                </div>
-                            </div>
-                            <div class="dev-item">
-                                <div class="dot done"><i class="fas fa-check"></i></div>
-                                <div class="content">
-                                    <div class="period done">2024.12 - 2025.01 (완료)</div>
-                                    <h4>MVP 개발</h4>
-                                    <p>일정 조율, 중간지점 추천, 장소 추천 핵심 기능 개발</p>
-                                </div>
-                            </div>
-                            <div class="dev-item">
-                                <div class="dot current"><i class="fas fa-code"></i></div>
-                                <div class="content">
-                                    <div class="period current">2025.02 - 2025.03 (진행중)</div>
-                                    <h4>베타 테스트</h4>
-                                    <p>소규모 사용자 테스트, 피드백 수집 및 개선</p>
-                                </div>
-                            </div>
-                            <div class="dev-item">
-                                <div class="dot pending"></div>
-                                <div class="content">
-                                    <div class="period pending">2025.04 (예정)</div>
-                                    <h4>정식 런칭</h4>
-                                    <p>웹/앱 동시 런칭, 마케팅 캠페인 시작</p>
-                                </div>
-                            </div>
+                <div class="slide-visual" style="background: #F8FAFC;">
+                    <div class="kpi-grid">
+                        <div class="kpi-card purple">
+                            <div class="label">월간 활성 사용자 (MAU)</div>
+                            <div class="value">10,000명</div>
+                            <div class="target">6개월 목표</div>
                         </div>
-                        <div class="tech-box">
-                            <h4>🛠 기술 스택</h4>
-                            <div class="tech-tags">
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">Next.js</span>
-                                <span class="tech-tag">Node.js</span>
-                                <span class="tech-tag">PostgreSQL</span>
-                                <span class="tech-tag">Kakao Map API</span>
-                                <span class="tech-tag">OpenAI API</span>
-                                <span class="tech-tag">AWS</span>
-                            </div>
+                        <div class="kpi-card green">
+                            <div class="label">월간 모임 생성 수</div>
+                            <div class="value">5,000건</div>
+                            <div class="target">6개월 목표</div>
+                        </div>
+                        <div class="kpi-card orange">
+                            <div class="label">재사용률</div>
+                            <div class="value">60%</div>
+                            <div class="target">한 번 사용 후 재사용</div>
+                        </div>
+                        <div class="kpi-card pink">
+                            <div class="label">사용자 만족도</div>
+                            <div class="value">4.5/5</div>
+                            <div class="target">앱스토어 평점 기준</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- SLIDE 11: Team -->
+        <!-- SLIDE 11: Budget -->
         <div class="slide">
             <div class="slide-split">
                 <div class="slide-info">
                     <div class="slide-number">10</div>
-                    <span class="slide-tag tag-team">Team</span>
-                    <h2 class="slide-title">팀 소개</h2>
-                    <p class="slide-desc">
-                        기획, 개발, 디자인 역량을 갖춘 팀으로, 각자의 전문성을 바탕으로 이지모임 서비스를 완성해 나가고 있습니다.
-                    </p>
-                </div>
-                <div class="slide-visual" style="background: #F5F3FF;">
-                    <div class="team-container">
-                        <div class="team-grid">
-                            <div class="team-card">
-                                <div class="header">
-                                    <div class="avatar">👨‍💻</div>
-                                    <div class="info">
-                                        <h4>홍길동</h4>
-                                        <span class="role">CEO / Full-stack Developer</span>
-                                    </div>
-                                </div>
-                                <p class="bio">컴퓨터공학 전공, 스타트업 개발 경험 2년. React, Node.js 기반 웹 서비스 개발 전문</p>
-                                <div class="skills">
-                                    <span class="skill">React</span>
-                                    <span class="skill">Node.js</span>
-                                    <span class="skill">PostgreSQL</span>
-                                    <span class="skill">AWS</span>
-                                </div>
-                            </div>
-                            <div class="team-card">
-                                <div class="header">
-                                    <div class="avatar">👩‍🎨</div>
-                                    <div class="info">
-                                        <h4>김지현</h4>
-                                        <span class="role">UI/UX Designer</span>
-                                    </div>
-                                </div>
-                                <p class="bio">시각디자인 전공, IT 스타트업 디자인 경력 3년. 사용자 중심 디자인 전문</p>
-                                <div class="skills">
-                                    <span class="skill">Figma</span>
-                                    <span class="skill">Framer</span>
-                                    <span class="skill">UI/UX</span>
-                                    <span class="skill">브랜딩</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-needs">
-                            <h4>📌 향후 충원 계획</h4>
-                            <p>마케팅 담당 1명, 백엔드 개발자 1명 (투자 유치 후 채용 예정)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SLIDE 12: KPI -->
-        <div class="slide">
-            <div class="slide-split">
-                <div class="slide-info">
-                    <div class="slide-number">11</div>
-                    <span class="slide-tag tag-kpi">KPI & Goals</span>
-                    <h2 class="slide-title">목표 지표</h2>
-                    <p class="slide-desc">
-                        핵심 성과 지표(KPI)를 설정하고, 분기별 마일스톤을 통해 체계적으로 성장해 나갑니다.
-                    </p>
-                </div>
-                <div class="slide-visual" style="background: #F0FDF4;">
-                    <div class="kpi-container">
-                        <div class="kpi-grid">
-                            <div class="kpi-card blue">
-                                <div class="label">월간 활성 사용자 (MAU)</div>
-                                <div class="value">50,000명</div>
-                                <div class="target">1년 차 목표</div>
-                            </div>
-                            <div class="kpi-card green">
-                                <div class="label">월간 모임 생성 수</div>
-                                <div class="value">20,000건</div>
-                                <div class="target">1년 차 목표</div>
-                            </div>
-                            <div class="kpi-card orange">
-                                <div class="label">재사용률 (Retention)</div>
-                                <div class="value">65%</div>
-                                <div class="target">30일 기준</div>
-                            </div>
-                            <div class="kpi-card pink">
-                                <div class="label">NPS (순추천지수)</div>
-                                <div class="value">50+</div>
-                                <div class="target">사용자 만족도 지표</div>
-                            </div>
-                        </div>
-                        <div class="milestone-box">
-                            <h4>📊 분기별 마일스톤</h4>
-                            <div class="milestones">
-                                <div class="milestone">
-                                    <div class="period">Q1 2025</div>
-                                    <div class="goal">정식 런칭, MAU 5,000</div>
-                                </div>
-                                <div class="milestone">
-                                    <div class="period">Q2 2025</div>
-                                    <div class="goal">MAU 15,000, 첫 광고 수익</div>
-                                </div>
-                                <div class="milestone">
-                                    <div class="period">Q3 2025</div>
-                                    <div class="goal">MAU 30,000, 제휴 계약 5건</div>
-                                </div>
-                                <div class="milestone">
-                                    <div class="period">Q4 2025</div>
-                                    <div class="goal">MAU 50,000, BEP 달성</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SLIDE 13: Budget -->
-        <div class="slide">
-            <div class="slide-split">
-                <div class="slide-info">
-                    <div class="slide-number">12</div>
-                    <span class="slide-tag tag-business">Budget Plan</span>
+                    <span class="slide-tag tag-feature">Budget Plan</span>
                     <h2 class="slide-title">예산 계획</h2>
                     <p class="slide-desc">
-                        지원금을 효율적으로 배분하여 제품 개발과 초기 마케팅에 집중합니다.
+                        효율적인 운영을 위한 월별 예산 계획입니다.
                     </p>
                 </div>
                 <div class="slide-visual" style="background: #F8FAFC;">
-                    <div class="budget-container">
-                        <div class="budget-summary">
-                            <div class="budget-total">
-                                <div class="label">총 사업비 (1년)</div>
-                                <div class="value">1억원</div>
-                                <div class="sub">예비창업패키지 최대 지원금 기준</div>
-                            </div>
-                            <div class="budget-chart">
-                                <div class="budget-item">
-                                    <span class="name">개발/인건비</span>
-                                    <div class="bar-container"><div class="bar dev"></div></div>
-                                    <span class="amount">4,000만원</span>
-                                </div>
-                                <div class="budget-item">
-                                    <span class="name">마케팅</span>
-                                    <div class="bar-container"><div class="bar marketing"></div></div>
-                                    <span class="amount">3,000만원</span>
-                                </div>
-                                <div class="budget-item">
-                                    <span class="name">인프라/서버</span>
-                                    <div class="bar-container"><div class="bar infra"></div></div>
-                                    <span class="amount">1,500만원</span>
-                                </div>
-                                <div class="budget-item">
-                                    <span class="name">기타 운영비</span>
-                                    <div class="bar-container"><div class="bar other"></div></div>
-                                    <span class="amount">1,500만원</span>
-                                </div>
-                            </div>
+                    <div class="budget-table">
+                        <div class="budget-row">
+                            <span class="item">서버/인프라</span>
+                            <span class="amount">월 30만원</span>
                         </div>
-                        <div class="budget-details">
-                            <div class="budget-detail">
-                                <div class="icon">💻</div>
-                                <h5>개발/인건비</h5>
-                                <p>추가 개발자 채용, 외주 개발비</p>
-                            </div>
-                            <div class="budget-detail">
-                                <div class="icon">📢</div>
-                                <h5>마케팅</h5>
-                                <p>SNS 광고, 인플루언서 협업</p>
-                            </div>
-                            <div class="budget-detail">
-                                <div class="icon">☁️</div>
-                                <h5>인프라</h5>
-                                <p>AWS 서버, API 사용료</p>
-                            </div>
-                            <div class="budget-detail">
-                                <div class="icon">📋</div>
-                                <h5>운영비</h5>
-                                <p>사무실, 법률/회계, 기타</p>
-                            </div>
+                        <div class="budget-row">
+                            <span class="item">개발 도구/API</span>
+                            <span class="amount">월 20만원</span>
+                        </div>
+                        <div class="budget-row">
+                            <span class="item">마케팅/홍보</span>
+                            <span class="amount">월 100만원</span>
+                        </div>
+                        <div class="budget-row">
+                            <span class="item">디자인/UX</span>
+                            <span class="amount">월 30만원</span>
+                        </div>
+                        <div class="budget-row">
+                            <span class="item">기타 운영비</span>
+                            <span class="amount">월 20만원</span>
+                        </div>
+                        <div class="budget-row total">
+                            <span class="item">총 월 예산</span>
+                            <span class="amount">200만원</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- SLIDE 14: Risk Management -->
-        <div class="slide">
-            <div class="slide-split">
-                <div class="slide-info">
-                    <div class="slide-number">13</div>
-                    <span class="slide-tag tag-plan">Risk Management</span>
-                    <h2 class="slide-title">리스크 관리</h2>
-                    <p class="slide-desc">
-                        예상되는 리스크를 사전에 파악하고, 각각에 대한 대응 전략을 수립하여 안정적인 사업 운영을 준비합니다.
-                    </p>
-                </div>
-                <div class="slide-visual" style="background: #F8FAFC;">
-                    <div class="risk-container">
-                        <div class="risk-grid">
-                            <div class="risk-card">
-                                <div class="header">
-                                    <div class="icon red"><i class="fas fa-users"></i></div>
-                                    <h4>사용자 확보 지연</h4>
-                                </div>
-                                <p class="risk-desc">초기 사용자 확보가 예상보다 느릴 수 있음</p>
-                                <div class="solution">
-                                    <h5>대응 전략</h5>
-                                    <p>대학 동아리/직장인 커뮤니티 타겟 바이럴 마케팅, 초기 사용자 혜택 제공</p>
-                                </div>
-                            </div>
-                            <div class="risk-card">
-                                <div class="header">
-                                    <div class="icon orange"><i class="fas fa-code-branch"></i></div>
-                                    <h4>기술적 장애</h4>
-                                </div>
-                                <p class="risk-desc">서버 과부하, API 연동 문제 발생 가능성</p>
-                                <div class="solution">
-                                    <h5>대응 전략</h5>
-                                    <p>AWS Auto Scaling 적용, 부하 테스트 사전 수행, 백업 API 확보</p>
-                                </div>
-                            </div>
-                            <div class="risk-card">
-                                <div class="header">
-                                    <div class="icon blue"><i class="fas fa-shield-alt"></i></div>
-                                    <h4>경쟁 서비스 등장</h4>
-                                </div>
-                                <p class="risk-desc">유사 서비스 출시로 경쟁 심화 가능성</p>
-                                <div class="solution">
-                                    <h5>대응 전략</h5>
-                                    <p>AI 비서 '이비서' 차별화 강화, 빠른 기능 업데이트로 선점 효과 유지</p>
-                                </div>
-                            </div>
-                            <div class="risk-card">
-                                <div class="header">
-                                    <div class="icon purple"><i class="fas fa-coins"></i></div>
-                                    <h4>수익화 지연</h4>
-                                </div>
-                                <p class="risk-desc">광고/제휴 수익 발생이 예상보다 늦을 수 있음</p>
-                                <div class="solution">
-                                    <h5>대응 전략</h5>
-                                    <p>사용자 기반 확보 우선, 후속 투자 유치로 런웨이 확보</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SLIDE 15: Closing -->
+        <!-- SLIDE 12: Closing -->
         <div class="slide slide-closing">
-            <img src="images/easymoim.png" alt="이지모임" class="closing-logo">
             <h1 class="closing-title">감사합니다</h1>
-            <p class="closing-tagline">더 이지한 모임! 모임비서 이비서!</p>
-            <p class="closing-message">
-                모임 준비의 번거로움을 해결하여<br>
-                더 많은 사람들이 소중한 만남을 즐길 수 있도록 하겠습니다.
+            <p class="closing-subtitle">
+                모임의 모든 과정을 쉽게 만들어<br>
+                더 많은 사람들이 소중한 만남을 즐길 수 있도록 하겠습니다
             </p>
-            <div class="closing-contact">
-                <div class="closing-contact-item">
-                    <span>Email</span>
-                    <strong>contact@easymoim.com</strong>
-                </div>
-                <div class="closing-contact-item">
-                    <span>Website</span>
-                    <strong>www.easymoim.com</strong>
-                </div>
-            </div>
+            <div class="closing-brand">이지모임</div>
+            <div class="closing-tagline">모임의 A부터 Z까지, 당신의 모임비서</div>
         </div>
     </div>
 
@@ -2323,14 +1254,11 @@
         <div class="slide-dot" onclick="goTo(9)"></div>
         <div class="slide-dot" onclick="goTo(10)"></div>
         <div class="slide-dot" onclick="goTo(11)"></div>
-        <div class="slide-dot" onclick="goTo(12)"></div>
-        <div class="slide-dot" onclick="goTo(13)"></div>
-        <div class="slide-dot" onclick="goTo(14)"></div>
     </div>
 
     <script>
         let current = 0;
-        const total = 15;
+        const total = 12;
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.slide-dot');
 
@@ -2365,58 +1293,6 @@
             const diff = touchStartX - e.changedTouches[0].clientX;
             if (Math.abs(diff) > 50) diff > 0 ? nextSlide() : prevSlide();
         });
-
-        // PDF Download
-        async function downloadPDF() {
-            const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF('landscape', 'mm', 'a4');
-            const pdfBtn = document.querySelector('.pdf-btn');
-            const navBtns = document.querySelectorAll('.nav-btn');
-            const slideNav = document.querySelector('.slide-nav');
-            const slideCounter = document.querySelector('.slide-counter');
-            const progressBar = document.getElementById('progressBar');
-
-            // Hide UI elements
-            pdfBtn.style.display = 'none';
-            navBtns.forEach(btn => btn.style.display = 'none');
-            slideNav.style.display = 'none';
-            slideCounter.style.display = 'none';
-            progressBar.style.display = 'none';
-
-            const originalCurrent = current;
-
-            for (let i = 0; i < total; i++) {
-                current = i;
-                updateSlide();
-                await new Promise(r => setTimeout(r, 300));
-
-                const canvas = await html2canvas(slides[i], {
-                    scale: 2,
-                    useCORS: true,
-                    allowTaint: true,
-                    backgroundColor: '#ffffff'
-                });
-
-                const imgData = canvas.toDataURL('image/jpeg', 0.95);
-                const pdfWidth = pdf.internal.pageSize.getWidth();
-                const pdfHeight = pdf.internal.pageSize.getHeight();
-
-                if (i > 0) pdf.addPage();
-                pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
-            }
-
-            pdf.save('이지모임_사업계획서.pdf');
-
-            // Restore UI
-            pdfBtn.style.display = 'flex';
-            navBtns.forEach(btn => btn.style.display = 'flex');
-            slideNav.style.display = 'flex';
-            slideCounter.style.display = 'block';
-            progressBar.style.display = 'block';
-
-            current = originalCurrent;
-            updateSlide();
-        }
     </script>
 </body>
 </html>
