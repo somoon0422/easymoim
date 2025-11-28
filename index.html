@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>이지모임 - AI 기반 스마트 약속 조율 서비스</title>
     <meta name="description" content="단톡방 일정 조율, AI가 3분 만에 해결합니다. 100개 넘는 메시지 정리 대신, 클릭 몇 번으로 약속 잡기 완료!">
-    <meta name="keywords" content="이지모임, 약속 잡기, 일정 조율, AI, 모임, 스케줄링">
+    <meta name="keywords" content="이지모임, 약속 잡기, 일정 조율, AI, 모임, 스케줄링, 중간지점">
 
     <!-- Open Graph -->
     <meta property="og:title" content="이지모임 - AI 기반 스마트 약속 조율 서비스">
@@ -17,11 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --primary: #0891B2;
@@ -30,15 +26,14 @@
             --accent: #06B6D4;
             --success: #10B981;
             --warning: #F59E0B;
+            --danger: #EF4444;
             --dark: #1F2937;
             --gray: #6B7280;
             --light-gray: #F3F4F6;
             --white: #FFFFFF;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -81,7 +76,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
+
+        .logo-icon { font-size: 1.8rem; }
 
         .nav-links {
             display: flex;
@@ -96,9 +96,7 @@
             transition: color 0.3s;
         }
 
-        .nav-links a:hover {
-            color: var(--primary);
-        }
+        .nav-links a:hover { color: var(--primary); }
 
         .nav-cta {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -147,15 +145,18 @@
         .hero-container {
             max-width: 1200px;
             margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero-top {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
+            margin-bottom: 4rem;
         }
 
-        .hero-content {
-            z-index: 1;
-        }
+        .hero-content { z-index: 1; }
 
         .hero-badge {
             display: inline-flex;
@@ -172,7 +173,7 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             font-weight: 900;
             line-height: 1.2;
             margin-bottom: 1.5rem;
@@ -186,16 +187,14 @@
             background-clip: text;
         }
 
-        .hero p {
-            font-size: 1.25rem;
+        .hero-subtitle {
+            font-size: 1.2rem;
             color: var(--gray);
             margin-bottom: 2rem;
             animation: fadeInUp 0.6s ease-out 0.2s backwards;
         }
 
-        .hero p strong {
-            color: var(--dark);
-        }
+        .hero-subtitle strong { color: var(--dark); }
 
         .hero-buttons {
             display: flex;
@@ -240,6 +239,7 @@
             color: var(--primary);
         }
 
+        /* Hero Visual */
         .hero-visual {
             position: relative;
             animation: fadeIn 1s ease-out 0.4s backwards;
@@ -247,7 +247,7 @@
 
         .hero-mockup {
             width: 100%;
-            max-width: 400px;
+            max-width: 380px;
             margin: 0 auto;
             background: white;
             border-radius: 30px;
@@ -257,89 +257,93 @@
             transition: transform 0.3s ease;
         }
 
-        .hero-mockup:hover {
-            transform: perspective(1000px) rotateY(0deg);
-        }
+        .hero-mockup:hover { transform: perspective(1000px) rotateY(0deg); }
 
         .mockup-header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            padding: 1.5rem;
+            padding: 1.25rem;
             color: white;
         }
 
-        .mockup-header h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .mockup-header p {
-            font-size: 0.85rem;
-            opacity: 0.9;
-            margin: 0;
-        }
-
-        .mockup-content {
-            padding: 1.5rem;
-        }
+        .mockup-header h3 { font-size: 1rem; margin-bottom: 0.2rem; }
+        .mockup-header p { font-size: 0.8rem; opacity: 0.9; margin: 0; }
+        .mockup-content { padding: 1.25rem; }
 
         .mockup-item {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1rem;
+            gap: 0.75rem;
+            padding: 0.85rem;
             background: var(--light-gray);
             border-radius: 12px;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.6rem;
         }
 
         .mockup-item i {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .mockup-item-text h4 {
             font-size: 0.9rem;
-            margin-bottom: 0.2rem;
         }
 
-        .mockup-item-text p {
-            font-size: 0.8rem;
-            color: var(--gray);
-            margin: 0;
+        .mockup-item-text h4 { font-size: 0.85rem; margin-bottom: 0.15rem; }
+        .mockup-item-text p { font-size: 0.75rem; color: var(--gray); margin: 0; }
+
+        /* Hero Feature Cards */
+        .hero-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            animation: fadeInUp 0.6s ease-out 0.5s backwards;
         }
+
+        .hero-feature-card {
+            background: white;
+            padding: 2rem 1.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .hero-feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(8, 145, 178, 0.15);
+        }
+
+        .hero-feature-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .hero-feature-icon.calendar { background: linear-gradient(135deg, #DBEAFE, #BFDBFE); }
+        .hero-feature-icon.location { background: linear-gradient(135deg, #D1FAE5, #A7F3D0); }
+        .hero-feature-icon.restaurant { background: linear-gradient(135deg, #FEF3C7, #FDE68A); }
+
+        .hero-feature-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--dark); }
+        .hero-feature-card p { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+
+        /* Sections Common */
+        .section-container { max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-header h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; }
+        .section-header p { font-size: 1.1rem; color: var(--gray); }
 
         /* Problem Section */
-        .problem {
-            padding: 6rem 2rem;
-            background: white;
-        }
-
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .section-header p {
-            font-size: 1.1rem;
-            color: var(--gray);
-        }
+        .problem { padding: 6rem 2rem; background: white; }
 
         .problem-grid {
             display: grid;
@@ -355,31 +359,180 @@
             transition: transform 0.3s ease;
         }
 
-        .problem-card:hover {
-            transform: translateY(-5px);
+        .problem-card:hover { transform: translateY(-5px); }
+        .problem-card .emoji { font-size: 3rem; margin-bottom: 1rem; }
+        .problem-card h3 { font-size: 1.25rem; margin-bottom: 0.75rem; color: #92400E; }
+        .problem-card p { color: #B45309; font-size: 0.95rem; }
+
+        /* Midpoint Section */
+        .midpoint { padding: 6rem 2rem; background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%); }
+
+        .midpoint-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
 
-        .problem-card .emoji {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        .midpoint-text h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.3; }
+        .midpoint-text h2 .highlight { color: var(--success); }
+        .midpoint-text .desc { font-size: 1.1rem; color: var(--gray); margin-bottom: 2rem; line-height: 1.8; }
+
+        .midpoint-benefits { display: flex; flex-direction: column; gap: 1rem; }
+
+        .midpoint-benefit {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
-        .problem-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-            color: #92400E;
+        .midpoint-benefit i {
+            width: 40px;
+            height: 40px;
+            background: var(--success);
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
         }
 
-        .problem-card p {
-            color: #B45309;
-            font-size: 0.95rem;
+        .midpoint-benefit span { font-weight: 600; color: var(--dark); }
+
+        /* Map Demo */
+        .map-demo {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+        }
+
+        .map-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+        .map-header i { color: var(--success); font-size: 1.5rem; }
+        .map-header h4 { font-size: 1.1rem; font-weight: 700; }
+
+        .map-container {
+            background: linear-gradient(135deg, #E5E7EB 0%, #D1D5DB 100%);
+            border-radius: 16px;
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-marker {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: bounce 2s infinite;
+        }
+
+        .map-marker .pin {
+            width: 36px;
+            height: 36px;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .map-marker .pin i { transform: rotate(45deg); color: white; font-size: 0.9rem; }
+
+        .map-marker .label {
+            background: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 0.25rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            white-space: nowrap;
+        }
+
+        .map-marker.user1 { top: 20%; left: 15%; }
+        .map-marker.user1 .pin { background: #3B82F6; }
+        .map-marker.user1 { animation-delay: 0s; }
+
+        .map-marker.user2 { top: 60%; left: 25%; }
+        .map-marker.user2 .pin { background: #8B5CF6; }
+        .map-marker.user2 { animation-delay: 0.2s; }
+
+        .map-marker.user3 { top: 30%; right: 20%; }
+        .map-marker.user3 .pin { background: #EC4899; }
+        .map-marker.user3 { animation-delay: 0.4s; }
+
+        .map-marker.user4 { bottom: 25%; right: 30%; }
+        .map-marker.user4 .pin { background: #F59E0B; }
+        .map-marker.user4 { animation-delay: 0.6s; }
+
+        .map-marker.center {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 2s infinite;
+        }
+
+        .map-marker.center .pin {
+            background: var(--success);
+            width: 50px;
+            height: 50px;
+            border: 4px solid white;
+        }
+
+        .map-marker.center .pin i { font-size: 1.2rem; }
+        .map-marker.center .label { background: var(--success); color: white; font-size: 0.8rem; padding: 0.4rem 0.8rem; }
+
+        .connection-lines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+        .connection-lines svg { width: 100%; height: 100%; }
+        .connection-lines line { stroke: var(--success); stroke-width: 2; stroke-dasharray: 8 4; opacity: 0.5; }
+
+        .map-result {
+            margin-top: 1.5rem;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, #ECFDF5, #D1FAE5);
+            border-radius: 12px;
+            border: 2px solid var(--success);
+        }
+
+        .map-result-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; }
+        .map-result-header i { color: var(--success); }
+        .map-result-header span { font-weight: 700; color: var(--success); font-size: 0.9rem; }
+        .map-result h4 { font-size: 1.2rem; font-weight: 800; color: var(--dark); margin-bottom: 0.5rem; }
+        .map-result p { font-size: 0.85rem; color: var(--gray); }
+
+        .travel-times { display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap; }
+
+        .travel-time {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+
+        .travel-time .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.05); }
         }
 
         /* Solution Section */
-        .solution {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, #ECFEFF 0%, #F0F9FF 100%);
-        }
+        .solution { padding: 6rem 2rem; background: linear-gradient(135deg, #ECFEFF 0%, #F0F9FF 100%); }
 
         .solution-content {
             display: grid;
@@ -388,11 +541,7 @@
             align-items: center;
         }
 
-        .solution-text h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-        }
+        .solution-text h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1.5rem; }
 
         .solution-text h2 .gradient-text {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -401,15 +550,8 @@
             background-clip: text;
         }
 
-        .solution-text p {
-            font-size: 1.1rem;
-            color: var(--gray);
-            margin-bottom: 2rem;
-        }
-
-        .solution-list {
-            list-style: none;
-        }
+        .solution-text p { font-size: 1.1rem; color: var(--gray); margin-bottom: 2rem; }
+        .solution-list { list-style: none; }
 
         .solution-list li {
             display: flex;
@@ -430,10 +572,6 @@
             font-size: 0.8rem;
             flex-shrink: 0;
             margin-top: 2px;
-        }
-
-        .solution-visual {
-            position: relative;
         }
 
         .solution-card {
@@ -467,10 +605,7 @@
             transition: all 0.3s ease;
         }
 
-        .recommendation-item:hover {
-            background: #E0F7FA;
-            transform: translateX(5px);
-        }
+        .recommendation-item:hover { background: #E0F7FA; transform: translateX(5px); }
 
         .recommendation-rank {
             width: 32px;
@@ -485,22 +620,11 @@
             font-size: 0.9rem;
         }
 
-        .recommendation-info h4 {
-            font-size: 0.95rem;
-            margin-bottom: 0.2rem;
-        }
-
-        .recommendation-info p {
-            font-size: 0.8rem;
-            color: var(--gray);
-            margin: 0;
-        }
+        .recommendation-info h4 { font-size: 0.95rem; margin-bottom: 0.2rem; }
+        .recommendation-info p { font-size: 0.8rem; color: var(--gray); margin: 0; }
 
         /* Features Section */
-        .features {
-            padding: 6rem 2rem;
-            background: white;
-        }
+        .features { padding: 6rem 2rem; background: white; }
 
         .features-grid {
             display: grid;
@@ -536,30 +660,13 @@
             margin-bottom: 1.5rem;
         }
 
-        .feature-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .feature-card p {
-            color: var(--gray);
-            font-size: 0.95rem;
-        }
+        .feature-card h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+        .feature-card p { color: var(--gray); font-size: 0.95rem; }
 
         /* How It Works */
-        .how-it-works {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
-            color: white;
-        }
-
-        .how-it-works .section-header h2 {
-            color: white;
-        }
-
-        .how-it-works .section-header p {
-            color: rgba(255,255,255,0.7);
-        }
+        .how-it-works { padding: 6rem 2rem; background: linear-gradient(135deg, #1F2937 0%, #111827 100%); color: white; }
+        .how-it-works .section-header h2 { color: white; }
+        .how-it-works .section-header p { color: rgba(255,255,255,0.7); }
 
         .steps {
             display: grid;
@@ -579,11 +686,7 @@
             z-index: 0;
         }
 
-        .step {
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
+        .step { text-align: center; position: relative; z-index: 1; }
 
         .step-number {
             width: 80px;
@@ -600,35 +703,13 @@
             box-shadow: 0 10px 30px rgba(8, 145, 178, 0.4);
         }
 
-        .step h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .step p {
-            color: rgba(255,255,255,0.7);
-            font-size: 0.95rem;
-        }
+        .step h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+        .step p { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
 
         /* CTA Section */
-        .cta {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            text-align: center;
-            color: white;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 2rem;
-        }
+        .cta { padding: 6rem 2rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); text-align: center; color: white; }
+        .cta h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; }
+        .cta p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem; }
 
         .cta .btn-white {
             background: white;
@@ -642,35 +723,13 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
 
-        .cta-links {
-            margin-top: 2rem;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
-
-        .cta-links a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-        }
-
-        .cta-links a:hover {
-            color: white;
-        }
+        .cta-links { margin-top: 2rem; display: flex; justify-content: center; gap: 2rem; }
+        .cta-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.95rem; transition: color 0.3s; }
+        .cta-links a:hover { color: white; }
 
         /* Footer */
-        .footer {
-            background: #111827;
-            color: white;
-            padding: 4rem 2rem 2rem;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        .footer { background: #111827; color: white; padding: 4rem 2rem 2rem; }
+        .footer-container { max-width: 1200px; margin: 0 auto; }
 
         .footer-top {
             display: grid;
@@ -689,35 +748,12 @@
             background-clip: text;
         }
 
-        .footer-brand p {
-            color: rgba(255,255,255,0.6);
-            font-size: 0.95rem;
-        }
-
-        .footer-links h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links a {
-            color: rgba(255,255,255,0.6);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
+        .footer-brand p { color: rgba(255,255,255,0.6); font-size: 0.95rem; }
+        .footer-links h4 { font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 0.5rem; }
+        .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--primary); }
 
         .footer-bottom {
             border-top: 1px solid rgba(255,255,255,0.1);
@@ -729,14 +765,8 @@
 
         /* Animations */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeIn {
@@ -746,45 +776,16 @@
 
         /* Mobile Responsive */
         @media (max-width: 1024px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .hero-visual {
-                order: -1;
-            }
-
-            .hero-mockup {
-                transform: none;
-                max-width: 320px;
-            }
-
-            .problem-grid,
-            .features-grid,
-            .steps {
-                grid-template-columns: 1fr;
-            }
-
-            .steps::before {
-                display: none;
-            }
-
-            .solution-content {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-top {
-                grid-template-columns: 1fr 1fr;
-            }
+            .hero-top { grid-template-columns: 1fr; text-align: center; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero-buttons { justify-content: center; }
+            .hero-visual { order: -1; }
+            .hero-mockup { transform: none; max-width: 320px; }
+            .hero-features { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+            .problem-grid, .features-grid, .steps { grid-template-columns: 1fr; }
+            .steps::before { display: none; }
+            .solution-content, .midpoint-content { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 768px) {
@@ -799,118 +800,86 @@
                 padding: 1rem;
                 box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .hero {
-                padding: 6rem 1rem 3rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .section-header h2 {
-                font-size: 1.75rem;
-            }
-
-            .cta h2 {
-                font-size: 1.75rem;
-            }
-
-            .footer-top {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .cta-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
+            .nav-links.active { display: flex; }
+            .mobile-menu-btn { display: block; }
+            .hero { padding: 6rem 1rem 3rem; }
+            .hero h1 { font-size: 2rem; }
+            .section-header h2, .midpoint-text h2, .cta h2 { font-size: 1.75rem; }
+            .footer-top { grid-template-columns: 1fr; text-align: center; }
+            .cta-links { flex-direction: column; gap: 1rem; }
         }
 
-        /* Mobile Menu */
-        .nav-links.active {
-            display: flex;
-        }
+        .nav-links.active { display: flex; }
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">이지모임</a>
+            <a href="#" class="logo"><span class="logo-icon">📅</span>이지모임</a>
             <div class="nav-links" id="navLinks">
                 <a href="#features">기능</a>
+                <a href="#midpoint">중간지점</a>
                 <a href="#how-it-works">사용방법</a>
                 <a href="https://prototypeeasymoim.vercel.app/" class="nav-cta" target="_blank">서비스 체험하기</a>
             </div>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <i class="fas fa-sparkles"></i>
-                    AI 기반 스마트 약속 조율
+            <div class="hero-top">
+                <div class="hero-content">
+                    <div class="hero-badge"><i class="fas fa-sparkles"></i>AI 기반 스마트 약속 조율</div>
+                    <h1>단톡방 일정 조율,<br><span class="gradient-text">이제 그만 하세요</span></h1>
+                    <p class="hero-subtitle">100개 넘는 메시지 정리하지 말고<br><strong>AI가 3분 만에 자동으로 끝내드립니다</strong></p>
+                    <div class="hero-buttons">
+                        <a href="https://prototypeeasymoim.vercel.app/" class="btn btn-primary" target="_blank">지금 시작하기 <i class="fas fa-arrow-right"></i></a>
+                        <a href="#features" class="btn btn-secondary">더 알아보기</a>
+                    </div>
                 </div>
-                <h1>
-                    단톡방 일정 조율,<br>
-                    <span class="gradient-text">이제 그만 하세요</span>
-                </h1>
-                <p>
-                    100개 넘는 메시지 정리하지 말고<br>
-                    <strong>AI가 3분 만에 자동으로 끝내드립니다</strong>
-                </p>
-                <div class="hero-buttons">
-                    <a href="https://prototypeeasymoim.vercel.app/" class="btn btn-primary" target="_blank">
-                        지금 시작하기 <i class="fas fa-arrow-right"></i>
-                    </a>
-                    <a href="#features" class="btn btn-secondary">
-                        더 알아보기
-                    </a>
+                <div class="hero-visual">
+                    <div class="hero-mockup">
+                        <div class="mockup-header">
+                            <h3>🎉 대학 동기 모임</h3>
+                            <p>AI 추천 결과가 도착했어요!</p>
+                        </div>
+                        <div class="mockup-content">
+                            <div class="mockup-item">
+                                <i class="fas fa-calendar-check"></i>
+                                <div class="mockup-item-text"><h4>12월 7일 (토) 18:00</h4><p>5명 전원 가능</p></div>
+                            </div>
+                            <div class="mockup-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div class="mockup-item-text"><h4>강남역 3번 출구</h4><p>중간지점 자동 계산</p></div>
+                            </div>
+                            <div class="mockup-item">
+                                <i class="fas fa-utensils"></i>
+                                <div class="mockup-item-text"><h4>육회본가 강남점</h4><p>⭐ 4.8 • 인당 25,000원</p></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="hero-visual">
-                <div class="hero-mockup">
-                    <div class="mockup-header">
-                        <h3>🎉 대학 동기 모임</h3>
-                        <p>AI 추천 결과가 도착했어요!</p>
-                    </div>
-                    <div class="mockup-content">
-                        <div class="mockup-item">
-                            <i class="fas fa-calendar-check"></i>
-                            <div class="mockup-item-text">
-                                <h4>12월 7일 (토) 18:00</h4>
-                                <p>5명 전원 가능</p>
-                            </div>
-                        </div>
-                        <div class="mockup-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div class="mockup-item-text">
-                                <h4>강남역 3번 출구</h4>
-                                <p>평균 이동시간 32분</p>
-                            </div>
-                        </div>
-                        <div class="mockup-item">
-                            <i class="fas fa-utensils"></i>
-                            <div class="mockup-item-text">
-                                <h4>육회본가 강남점</h4>
-                                <p>⭐ 4.8 • 인당 25,000원</p>
-                            </div>
-                        </div>
-                    </div>
+
+            <!-- 핵심 기능 3가지 -->
+            <div class="hero-features">
+                <div class="hero-feature-card">
+                    <div class="hero-feature-icon calendar">📅</div>
+                    <h3>일정 투표</h3>
+                    <p>링크 하나로 모두의 가능한 시간을<br>자동으로 취합해요</p>
+                </div>
+                <div class="hero-feature-card">
+                    <div class="hero-feature-icon location">📍</div>
+                    <h3>중간지점 추천</h3>
+                    <p>각자 출발지를 입력하면<br>최적의 만남 장소를 찾아드려요</p>
+                </div>
+                <div class="hero-feature-card">
+                    <div class="hero-feature-icon restaurant">🍽️</div>
+                    <h3>맛집 추천</h3>
+                    <p>분위기, 예산에 맞는<br>주변 맛집까지 AI가 골라요</p>
                 </div>
             </div>
         </div>
@@ -931,8 +900,8 @@
                 </div>
                 <div class="problem-card">
                     <div class="emoji">🗺️</div>
-                    <h3>장소 전쟁</h3>
-                    <p>"강남 어때?" "난 홍대가 좋은데"<br>끝없는 장소 논쟁...</p>
+                    <h3>"어디서 만나?" 전쟁</h3>
+                    <p>서울, 인천, 수원... 각자 사는 곳이 달라서<br>어디서 만나야 공평한지 모르겠고...</p>
                 </div>
                 <div class="problem-card">
                     <div class="emoji">😤</div>
@@ -943,67 +912,81 @@
         </div>
     </section>
 
+    <!-- 중간지점 계산 섹션 -->
+    <section class="midpoint" id="midpoint">
+        <div class="section-container">
+            <div class="midpoint-content">
+                <div class="midpoint-text">
+                    <h2>"어디서 만나?" 고민 끝!<br><span class="highlight">중간지점 자동 계산</span></h2>
+                    <p class="desc">서울, 인천, 분당, 일산... 각자 사는 곳이 달라도 걱정 마세요.<br>모두의 출발지를 입력하면, AI가 <strong>이동시간이 가장 공평한 장소</strong>를 찾아드려요.</p>
+                    <div class="midpoint-benefits">
+                        <div class="midpoint-benefit"><i class="fas fa-subway"></i><span>대중교통 기준 이동시간 계산</span></div>
+                        <div class="midpoint-benefit"><i class="fas fa-balance-scale"></i><span>모두에게 공평한 위치 추천</span></div>
+                        <div class="midpoint-benefit"><i class="fas fa-store"></i><span>주변 맛집/카페까지 한 번에</span></div>
+                    </div>
+                </div>
+                <div class="midpoint-visual">
+                    <div class="map-demo">
+                        <div class="map-header"><i class="fas fa-map-marked-alt"></i><h4>중간지점 계산 결과</h4></div>
+                        <div class="map-container">
+                            <svg class="connection-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <line x1="20" y1="25" x2="50" y2="50"/>
+                                <line x1="30" y1="65" x2="50" y2="50"/>
+                                <line x1="75" y1="35" x2="50" y2="50"/>
+                                <line x1="65" y1="70" x2="50" y2="50"/>
+                            </svg>
+                            <div class="map-marker user1"><div class="pin"><i class="fas fa-user"></i></div><span class="label">민지 (서울)</span></div>
+                            <div class="map-marker user2"><div class="pin"><i class="fas fa-user"></i></div><span class="label">수현 (인천)</span></div>
+                            <div class="map-marker user3"><div class="pin"><i class="fas fa-user"></i></div><span class="label">지훈 (분당)</span></div>
+                            <div class="map-marker user4"><div class="pin"><i class="fas fa-user"></i></div><span class="label">예은 (수원)</span></div>
+                            <div class="map-marker center"><div class="pin"><i class="fas fa-star"></i></div><span class="label">중간지점</span></div>
+                        </div>
+                        <div class="map-result">
+                            <div class="map-result-header"><i class="fas fa-check-circle"></i><span>AI 추천 중간지점</span></div>
+                            <h4>🚇 강남역</h4>
+                            <p>4명 모두 평균 35분 이내 도착 가능</p>
+                            <div class="travel-times">
+                                <div class="travel-time"><span class="dot" style="background: #3B82F6;"></span>민지 32분</div>
+                                <div class="travel-time"><span class="dot" style="background: #8B5CF6;"></span>수현 38분</div>
+                                <div class="travel-time"><span class="dot" style="background: #EC4899;"></span>지훈 35분</div>
+                                <div class="travel-time"><span class="dot" style="background: #F59E0B;"></span>예은 40분</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Solution Section -->
     <section class="solution">
         <div class="section-container">
             <div class="solution-content">
                 <div class="solution-text">
-                    <h2>
-                        <span class="gradient-text">이지모임</span>이<br>
-                        다 해결해드려요
-                    </h2>
-                    <p>
-                        AI가 모두의 일정을 분석하고, 최적의 시간과 장소를 추천합니다.<br>
-                        이제 약속 잡기, 클릭 몇 번이면 끝!
-                    </p>
+                    <h2><span class="gradient-text">이지모임</span>이<br>다 해결해드려요</h2>
+                    <p>AI가 모두의 일정을 분석하고, 최적의 시간과 장소를 추천합니다.<br>이제 약속 잡기, 클릭 몇 번이면 끝!</p>
                     <ul class="solution-list">
-                        <li>
-                            <i class="fas fa-check"></i>
-                            <span>카톡으로 간편하게 공유, 클릭만으로 일정 응답</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check"></i>
-                            <span>모두의 위치를 고려한 중간 지점 자동 계산</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check"></i>
-                            <span>예산, 분위기에 맞는 맛집까지 AI가 추천</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check"></i>
-                            <span>설치 없이 웹에서 바로 사용 가능</span>
-                        </li>
+                        <li><i class="fas fa-check"></i><span>카톡으로 간편하게 공유, 클릭만으로 일정 응답</span></li>
+                        <li><i class="fas fa-check"></i><span>모두의 위치를 고려한 중간 지점 자동 계산</span></li>
+                        <li><i class="fas fa-check"></i><span>예산, 분위기에 맞는 맛집까지 AI가 추천</span></li>
+                        <li><i class="fas fa-check"></i><span>설치 없이 웹에서 바로 사용 가능</span></li>
                     </ul>
                 </div>
                 <div class="solution-visual">
                     <div class="solution-card">
-                        <div class="ai-badge">
-                            <i class="fas fa-robot"></i>
-                            AI 추천
-                        </div>
-                        <p style="margin-bottom: 1rem; color: var(--gray); font-size: 0.9rem;">
-                            5명의 일정과 위치를 분석했어요
-                        </p>
+                        <div class="ai-badge"><i class="fas fa-robot"></i>AI 추천</div>
+                        <p style="margin-bottom: 1rem; color: var(--gray); font-size: 0.9rem;">5명의 일정과 위치를 분석했어요</p>
                         <div class="recommendation-item">
                             <div class="recommendation-rank">1</div>
-                            <div class="recommendation-info">
-                                <h4>12/7(토) 18:00 • 강남역</h4>
-                                <p>전원 참석 가능 • 평균 32분</p>
-                            </div>
+                            <div class="recommendation-info"><h4>12/7(토) 18:00 • 강남역</h4><p>전원 참석 가능 • 평균 32분</p></div>
                         </div>
                         <div class="recommendation-item">
                             <div class="recommendation-rank">2</div>
-                            <div class="recommendation-info">
-                                <h4>12/8(일) 12:00 • 홍대입구역</h4>
-                                <p>4명 참석 가능 • 평균 28분</p>
-                            </div>
+                            <div class="recommendation-info"><h4>12/8(일) 12:00 • 홍대입구역</h4><p>4명 참석 가능 • 평균 28분</p></div>
                         </div>
                         <div class="recommendation-item">
                             <div class="recommendation-rank">3</div>
-                            <div class="recommendation-info">
-                                <h4>12/14(토) 19:00 • 건대입구역</h4>
-                                <p>전원 참석 가능 • 평균 35분</p>
-                            </div>
+                            <div class="recommendation-info"><h4>12/14(토) 19:00 • 건대입구역</h4><p>전원 참석 가능 • 평균 35분</p></div>
                         </div>
                     </div>
                 </div>
@@ -1020,46 +1003,34 @@
             </div>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
+                    <div class="feature-icon"><i class="fas fa-calendar-alt"></i></div>
                     <h3>초간편 일정 조율</h3>
                     <p>카톡으로 링크 공유하면 끝! 모두의 가능한 시간을 자동으로 취합해요.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-magic"></i>
-                    </div>
-                    <h3>AI 스마트 추천</h3>
-                    <p>최적의 시간, 장소, 식당까지 AI가 3순위로 추천해드려요.</p>
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #10B981, #059669);"><i class="fas fa-map-marker-alt"></i></div>
+                    <h3>중간지점 자동 계산</h3>
+                    <p>각자 출발지를 입력하면 이동시간이 공평한 최적의 만남 장소를 찾아드려요.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h3>중간 지점 계산</h3>
-                    <p>모두의 출발지를 고려한 최적의 만남 장소를 찾아드려요.</p>
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #F59E0B, #D97706);"><i class="fas fa-utensils"></i></div>
+                    <h3>맛집 추천</h3>
+                    <p>분위기, 예산에 맞는 주변 맛집을 AI가 골라드려요.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-comments"></i>
-                    </div>
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);"><i class="fas fa-comments"></i></div>
                     <h3>실시간 채팅</h3>
                     <p>모임별 전용 채팅방에서 자유롭게 소통하세요.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #EC4899, #DB2777);"><i class="fas fa-mobile-alt"></i></div>
                     <h3>설치 불필요</h3>
                     <p>URL만으로 바로 접속! 앱 설치 없이 웹에서 모든 게 가능해요.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-store"></i>
-                    </div>
-                    <h3>맛집 추천</h3>
-                    <p>분위기, 예산에 맞는 주변 맛집을 AI가 골라드려요.</p>
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #14B8A6, #0D9488);"><i class="fas fa-bell"></i></div>
+                    <h3>알림 기능</h3>
+                    <p>미응답자에게 리마인더, 일정 확정 알림까지 자동으로 보내드려요.</p>
                 </div>
             </div>
         </div>
@@ -1080,13 +1051,13 @@
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
-                    <h3>일정 투표</h3>
-                    <p>참석자들이 가능한 시간에<br>투표하면 자동 취합</p>
+                    <h3>일정 & 위치 입력</h3>
+                    <p>참석자들이 가능한 시간과<br>출발지를 입력하면 자동 취합</p>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
                     <h3>AI 추천 & 확정</h3>
-                    <p>AI가 최적의 시간, 장소를<br>추천하면 클릭으로 확정!</p>
+                    <p>AI가 최적의 시간, 중간지점,<br>맛집을 추천하면 클릭으로 확정!</p>
                 </div>
             </div>
         </div>
@@ -1095,12 +1066,12 @@
     <!-- CTA Section -->
     <section class="cta">
         <div class="section-container">
-            <h2>"언제 만날까?" 고민 끝!</h2>
-            <p>복잡한 단체 약속도 클릭 몇 번이면 완료<br>시간, 장소, 예산까지 AI가 완벽하게 추천합니다</p>
-            <a href="https://prototypeeasymoim.vercel.app/" class="btn btn-white" target="_blank">
-                지금 바로 시작하기 <i class="fas fa-arrow-right"></i>
-            </a>
+            <h2>"언제, 어디서 만날까?" 고민 끝!</h2>
+            <p>복잡한 단체 약속도 클릭 몇 번이면 완료<br>시간, 중간지점, 맛집까지 AI가 완벽하게 추천합니다</p>
+            <a href="https://prototypeeasymoim.vercel.app/" class="btn btn-white" target="_blank">지금 바로 시작하기 <i class="fas fa-arrow-right"></i></a>
             <div class="cta-links">
+                <a href="ir.html"><i class="fas fa-file-alt"></i> IR 자료 보기</a>
+                <a href="business-plan.html"><i class="fas fa-file-powerpoint"></i> 사업계획서 보기</a>
                 <a href="mailto:contact@easymoim.com"><i class="fas fa-envelope"></i> 문의하기</a>
             </div>
         </div>
@@ -1111,7 +1082,7 @@
         <div class="footer-container">
             <div class="footer-top">
                 <div class="footer-brand">
-                    <h3>이지모임</h3>
+                    <h3>📅 이지모임</h3>
                     <p>AI가 만드는 완벽한 만남<br>약속 잡기의 새로운 기준</p>
                 </div>
                 <div class="footer-links">
@@ -1123,10 +1094,10 @@
                     </ul>
                 </div>
                 <div class="footer-links">
-                    <h4>회사</h4>
+                    <h4>자료</h4>
                     <ul>
-                        <li><a href="mailto:contact@easymoim.com">제휴 문의</a></li>
-                        <li><a href="mailto:contact@easymoim.com">채용</a></li>
+                        <li><a href="ir.html">IR 자료</a></li>
+                        <li><a href="business-plan.html">사업계획서</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
@@ -1145,20 +1116,13 @@
     </footer>
 
     <script>
-        // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
-
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             const icon = mobileMenuBtn.querySelector('i');
@@ -1166,27 +1130,16 @@
             icon.classList.toggle('fa-times');
         });
 
-        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    // Close mobile menu if open
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     navLinks.classList.remove('active');
                 }
             });
         });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1195,10 +1148,9 @@
                     entry.target.style.transform = 'translateY(0)';
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        // Observe elements for animation
-        document.querySelectorAll('.problem-card, .feature-card, .step, .solution-card').forEach(el => {
+        document.querySelectorAll('.problem-card, .feature-card, .step, .solution-card, .hero-feature-card, .map-demo').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'all 0.6s ease-out';
