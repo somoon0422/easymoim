@@ -28,7 +28,7 @@
 
         body {
             font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #ffffff;
+            background: #0a0a0a;
             color: var(--dark);
             overflow: hidden;
         }
@@ -48,10 +48,10 @@
             visibility: hidden;
             transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
-            background: #ffffff; z-index: 1;
+            background: var(--white);
         }
 
-        .slide.active { z-index: 10;
+        .slide.active {
             opacity: 1;
             visibility: visible;
         }
@@ -252,7 +252,7 @@
         }
 
         /* ===== Common Slide Layout ===== */
-        .slide-split { background: white;
+        .slide-split {
             display: flex;
             height: 100%;
         }
@@ -263,10 +263,10 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            background: #ffffff; z-index: 1;
+            background: var(--white);
         }
 
-        .slide-visual { background: white;
+        .slide-visual {
             width: 60%;
             display: flex;
             align-items: center;
@@ -2331,11 +2331,11 @@
     <script>
         let current = 0;
         const total = 15;
-        const slides = document.querySelectorAll('.presentation > .slide');
+        const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.slide-dot');
 
         function updateSlide() {
-            slides.forEach((s, i) => { if(i===current){s.classList.add('active');s.style.opacity='1';s.style.visibility='visible';}else{s.classList.remove('active');s.style.opacity='0';s.style.visibility='hidden';} });
+            slides.forEach((s, i) => s.classList.toggle('active', i === current));
             dots.forEach((d, i) => d.classList.toggle('active', i === current));
             document.getElementById('current').textContent = String(current + 1).padStart(2, '0');
             document.getElementById('progressBar').style.width = ((current + 1) / total * 100) + '%';
