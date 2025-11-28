@@ -888,7 +888,7 @@
         const dots = document.querySelectorAll('.slide-dot');
 
         function updateSlide() {
-            slides.forEach((s, i) => s.classList.toggle('active', i === current));
+            slides.forEach((s, i) => { if(i===current){s.classList.add('active');s.style.opacity='1';s.style.visibility='visible';}else{s.classList.remove('active');s.style.opacity='0';s.style.visibility='hidden';} });
             dots.forEach((d, i) => d.classList.toggle('active', i === current));
             document.getElementById('current').textContent = String(current + 1).padStart(2, '0');
             document.getElementById('progressBar').style.width = ((current + 1) / total * 100) + '%';
